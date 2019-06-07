@@ -99,6 +99,10 @@ a.link {
     box-shadow: none;
 }
 
+.center-btn{
+	text-align: center
+}
+
 span.label.label-warning {
     font-size: 14px;
 }

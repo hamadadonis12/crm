@@ -14,12 +14,13 @@ class CreatePackagesTable extends Migration
     public function up()
     {
         Schema::create('packages', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
 			$table->string('name');
 			$table->date('from');
 			$table->date('to');		
 			
-			$table->integer('client_id')->unsigned();
+			$table->bigInteger('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
 			
             $table->timestamps();
