@@ -1,3 +1,6 @@
 - country / city on packages
 - sales
 - filters and exports for clients and packages
+- add collective html
+- email clients
+- generate card ( not in form)
