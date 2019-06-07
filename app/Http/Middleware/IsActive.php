@@ -15,7 +15,7 @@ class IsActive
      */
     public function handle($request, Closure $next)
     {
-        if(!auth()->user()->active)
+        if(!auth()->user()->is_active)
             abort(401);
 
         return $next($request);
