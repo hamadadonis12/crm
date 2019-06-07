@@ -40,6 +40,8 @@ class CreatePackagesTable extends Migration
 			$table->bigInteger('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
 			
+            $table->double('price', 8, 2)->default(0);
+
             $table->timestamps();
         });
     }

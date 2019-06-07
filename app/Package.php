@@ -23,6 +23,7 @@ class Package extends Model
 		'has_cruise',
 		'cruise_name',
 		'has_train',
+		'price',
 	];
 	
 	
