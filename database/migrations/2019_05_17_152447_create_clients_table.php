@@ -19,7 +19,7 @@ class CreateClientsTable extends Migration
 			$table->string('firstname');
 			$table->string('lastname');
 			$table->string('gender');
-			$table->date('date_of_birth');
+			$table->date('date_of_birth')->nullable();
 			$table->string('email')->unique();		
 			$table->string('mobile')->nullable();
 			$table->string('company')->nullable();
@@ -30,9 +30,9 @@ class CreateClientsTable extends Migration
 			$table->string('street')->nullable();
 			$table->string('city')->nullable();
 			$table->string('postcode')->nullable();
-			$table->string('passport_nb');
-			$table->date('issuance_date');
-			$table->date('expiry_date');
+			$table->string('passport_nb')->nullable();
+			$table->date('issuance_date')->nullable();
+			$table->date('expiry_date')->nullable();
 			$table->longText('comment')->nullable();
             $table->timestamps();
         });
