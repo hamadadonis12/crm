@@ -61,7 +61,12 @@
 							  <li role="separator" class="divider"></li>
 							  <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
 							  <li role="separator" class="divider"></li>
-							  <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+							  <li>
+								<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> {{ __('Logout') }}</a>
+								<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+									@csrf
+								</form>
+							  </li>
 						   </ul>
 						</div>
 					 </li>
@@ -85,7 +90,7 @@
 					 <li>
 						<a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Administration</span></a>
 						<ul aria-expanded="false" class="collapse">
-						   <li><a href="#">User Management </a></li>
+						   <li><a href="{!! route('users.index') !!}">User Management </a></li>
 						   <li><a href="#">Group</a></li>
 						   <li><a href="#">Group Privileges</a></li>
 						</ul>

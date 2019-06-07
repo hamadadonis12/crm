@@ -22,16 +22,16 @@
                                     <h6 class="card-subtitle">{{ $client->position }}</h6>
                                 </center>
                             </div>
-                            <div>
-                            <a href="{{route('clients.edit', $client->id)}}" class="btn waves-effect waves-light btn-sm btn-info"><i class="mdi mdi-grease-pencil"></i> Edit</a>
-                            <form onsubmit="return confirm('Are you sure you want to delete?');" class="d-inline-block" method="post" action="{{route('clients.destroy', $client->id)}}">
+                            <div class="center-btn">
+								<a href="{{route('clients.edit', $client->id)}}" class="btn waves-effect waves-light btn-sm btn-info"><i class="mdi mdi-grease-pencil"></i> Edit</a>
+								<form onsubmit="return confirm('Are you sure you want to delete?');" class="d-inline-block" method="post" action="{{route('clients.destroy', $client->id)}}">
 									@csrf
 									@method('delete')
 									<button type="submit" class="btn waves-effect waves-light btn-sm btn-danger"><i class="mdi mdi-delete"></i> Delete</button>
 								</form>
-									 <button type="button" class="btn waves-effect waves-light btn-sm btn-primary"><i class="mdi mdi-account-card-details"></i> Generate Card</button>
-                                <hr> 
-                                </div>
+								<button type="button" class="btn waves-effect waves-light btn-sm btn-primary"><i class="mdi mdi-account-card-details"></i> Generate Card</button>
+							</div>
+							<hr class="m-t-10"> 
                             <div class="card-body"> 
 								<small class="text-muted">Email address </small>
 									<h6>{{ $client->email }}</h6> 

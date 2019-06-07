@@ -29,17 +29,17 @@
                                  <th>Name</th>
                                  <th>Email</th>
                                  <th>Phone</th>
+                                 <th>Passport N.</th>
 								 <th>Type</th>
-                                 <th>Action</th>
                               </tr>
                            </thead>
                            <tfoot>
                               <tr>
                                  <th>Name</th>
                                  <th>Email</th>
-                                 <th>Phone</th>
+                                 <th>Phone</th> 
+                                 <th>Passport N.</th>
 								 <th>Type</th>
-                                 <th>Action</th>
                               </tr>
                            </tfoot>
                            <tbody>
@@ -48,16 +48,8 @@
                                  <td><a href="{{route('clients.show', $client->id)}}">{{ $client->firstname }} {{ $client->lastname }}</a></td>
                                  <td>{{ $client->email }}</td>
                                  <td>{{ $client->mobile }}</td>
+								 <td>{{ $client->passport_nb }}</td>
                                  <td><span class="label label-warning">{{ $client->type }}</span></td>
-                                 <td>
-									 <a href="{{route('clients.edit', $client->id)}}" class="btn waves-effect waves-light btn-sm btn-info"><i class="mdi mdi-grease-pencil"></i> Edit</a>
-								<form onsubmit="return confirm('Are you sure you want to delete?');" class="d-inline-block" method="post" action="{{route('clients.destroy', $client->id)}}">
-									@csrf
-									@method('delete')
-									<button type="submit" class="btn waves-effect waves-light btn-sm btn-danger"><i class="mdi mdi-delete"></i> Delete</button>
-								</form>
-									 <button type="button" class="btn waves-effect waves-light btn-sm btn-primary"><i class="mdi mdi-account-card-details"></i> Generate Card</button>
-								 </td>
                               </tr>
 							@endforeach
                            </tbody>
