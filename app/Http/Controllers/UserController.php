@@ -43,6 +43,9 @@ class UserController extends Controller
         $input['password'] = Hash::make($request->get('password'));
         $user = User::create($input);
         
+        if(!$request->get('is_active'))
+            $input['is_active'] = 0;
+
 		session()->flash('message', 'Your record has been added successfully');
 		return redirect(route('users.index'));
     }
@@ -83,6 +86,9 @@ class UserController extends Controller
             $input['password'] = $user->password;
         else
             $input['password'] = Hash::make($request->get('password'));
+        
+        if(!$request->get('is_active'))
+            $input['is_active'] = 0;
         
         $user->update($input);
         

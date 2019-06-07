@@ -74,6 +74,14 @@
 										</div>
 									</div>
 								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label class="control-label">Is Active</label>
+											<input type="checkbox" name="is_active" class="form-control" value="1"/>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div class="form-actions">
 								<button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>

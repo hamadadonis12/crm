@@ -42,7 +42,12 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label">First Name</label>
-											<input type="text" value="{{ $user->first_name }}" name="first_name" class="form-control">
+											<input 
+												type="text" 
+												value="{!! $user->first_name !!}" 
+												name="first_name" 
+												class="form-control"
+											>
 										</div>
 									</div>
 									<div class="col-md-6">
@@ -78,6 +83,21 @@
 											<label class="control-label">Phone</label>
 											<input type="text" value="{{ $user->phone }}" name="phone" class="form-control">
 										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Is Active</label>
+										<input 
+											type="checkbox" 
+											name="is_active" 
+											class="form-control" 
+											value="1" 
+											style="opacity: 1;position:relative;left: 0"
+											@if($user->is_active) checked @endif
+										/>
 									</div>
 								</div>
 							</div>

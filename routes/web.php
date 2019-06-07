@@ -11,14 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
-
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'is-active'])->group(function () {
 	Route::get('/home', 'HomeController@index')->name('home');
 	Route::resource('clients', 'ClientController');
 	Route::resource('packages', 'PackageController');
