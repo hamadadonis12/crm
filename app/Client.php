@@ -15,8 +15,10 @@ class Client extends Model implements HasMedia
     protected $table="clients";
 	protected $fillable = ['firstname', 'lastname', 'gender', 'date_of_birth', 'email', 'mobile', 'company', 'position', 'type', 'hotline', 'card', 'street', 'city', 'postcode', 'passport_nb', 'issuance_date', 'expiry_date', 'comment'];
 
+
+    protected $appends = ['total_packages', 'total_price', 'points_earned'];
 	
-	public function package()
+	public function packages()
     {
         return $this->hasMany('App\Package');
     }
@@ -26,6 +28,24 @@ class Client extends Model implements HasMedia
         $this->addMediaConversion('thumb')
             ->width(100)
             ->height(100);
+    }
+
+    public function getTotalPackagesAttribute() 
+    {
+        return $this->packages->count();
+    }
+
+    public function getTotalPriceAttribute()
+    {
+        $total = $this->packages->sum('price');
+        return number_format($total, 0, '.', ',')." $";
+    }
+
+    public function getPointsEarnedAttribute()
+    {
+        $total = $this->packages->sum('price');
+        // every 50$ = 1 point
+        return floor($total / 50); 
     }
 
 }

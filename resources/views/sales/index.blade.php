@@ -29,6 +29,7 @@
                                  <th>Client</th>
                                  <th>Nb. Packages</th>
                                  <th>Total Price</th>
+                                 <th>Points Earned</th>
                               </tr>
                            </thead>
                            <tfoot>
@@ -36,18 +37,20 @@
                                  <th>Client</th>
                                  <th>Nb. Packages</th>
                                  <th>Total Price</th>
+                                 <th>Points Earned</th>
                               </tr>
                            </tfoot>
                            <tbody>
-                     @foreach($packages as $package)
+                     @foreach($clients as $client)
                               <tr>
                                  <td>
-                                    <a href="{{route('clients.show', $package->client->id)}}">
-                                       {{ $package->client->firstname }} {{ $package->client->lastname }}
+                                    <a href="{{route('clients.show', $client->id)}}">
+                                       {{ $client->firstname }} {{ $client->lastname }}
                                     </a>
                                  </td>
-                                 <td>{{ $package->totalPackages }}</td>
-                                 <td>{{ $package->totalPrice }} USD</td>
+                                 <td>{{ $client->total_packages }}</td>
+                                 <td>{{ $client->total_price }}</td>
+                                 <td>{{ $client->points_earned }}</td>
                               </tr>
 							@endforeach
                            </tbody>
