@@ -20,4 +20,6 @@ Route::middleware(['auth', 'is-active'])->group(function () {
 	Route::resource('clients', 'ClientController');
 	Route::resource('packages', 'PackageController');
 	Route::resource('users', 'UserController');
+
+	Route::get('sales', 'SalesController@index')->name('sales.index');
 });

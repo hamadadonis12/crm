@@ -104,7 +104,7 @@
 						<ul aria-expanded="false" class="collapse">
 						   <li><a href="{!! route('clients.index') !!}">Clients</a></li>
 						   <li><a href="{!! route('packages.index') !!}">Packages</a></li>
-						   <li><a href="#">Sales</a></li>
+						   <li><a href="{!! route('sales.index') !!}">Sales</a></li>
 						</ul>
 					 </li> 
 				  </ul>

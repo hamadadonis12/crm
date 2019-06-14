@@ -37,7 +37,7 @@ class CreatePackagesTable extends Migration
             
             $table->boolean('has_train')->default(0);
 			
-			$table->bigInteger('client_id')->unsigned();
+			$table->integer('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
 			
             $table->double('price', 8, 2)->default(0);

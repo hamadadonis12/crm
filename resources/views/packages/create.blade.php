@@ -68,6 +68,15 @@
 										</div>
 									</div>
 								</div>
+
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											{!! Form::label('price', 'Price', ['class' => 'control-label']) !!}
+											{!! Form::text('price', null, ['class' => 'form-control']) !!}
+										</div>
+									</div>
+								</div>
 								
 								<h3 class="box-title m-t-40">Hotel Accommodation</h3>
 								<hr>
