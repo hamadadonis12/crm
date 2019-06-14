@@ -9,7 +9,8 @@
             <div class="col-md-7 align-self-center">
                <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
-                  <li class="breadcrumb-item active">Packages</li>
+                  <li class="breadcrumb-item active"><a href="{{ route('packages.index') }}">Packages</a></li>
+				  <li class="breadcrumb-item active">Edit Package</li>
                </ol>
             </div>
          </div>
@@ -34,7 +35,7 @@
 						<h4 class="m-b-0 text-white"><i class="mdi mdi-grease-pencil"></i> Edit Content</h4>
 					</div>
 					<div class="card-body">
-						<form action="{{route('packages.update', $package->id)}}" method="POST">
+						{!! Form::model( $package, ['route' => ['packages.update', $package->id], 'method' => 'POST', 'files' => true ]) !!}
 							@method('put')
 							@csrf
 							<div class="form-body">
@@ -44,7 +45,7 @@
 									<div class="col-md-6">
 										<div class="form-group">
 											<label class="control-label">Client</label>
-											<select class="form-control" name="client_id">
+											<select class="select2 form-control custom-select" name="client_id" style="width: 100%; height:36px;">
 													<option disabled selected hidden>-- Select Client --</option>
 												@foreach($clients as $client)
 													<option value="{{ $client->id }}"
@@ -57,30 +58,41 @@
 										</div>
 									</div>
 									<div class="col-md-6">
-										<label class="control-label">Package Name</label>
-										<input type="text" name="name" value="{{ $package->name }}" class="form-control">
+										{!! Form::label('name', 'Package Name', ['class' => 'control-label']) !!}
+										{!! Form::text('name', null, ['class' => 'form-control']) !!}
 									</div>
 								</div>
-								
-
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">From</label>
-											<input type="date" name="from" value="{{ $package->from }}" class="form-control">
+											{!! Form::label('from', 'From', ['class' => 'control-label']) !!}
+											{!! Form::date('from', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">To</label>
-											<input type="date" name="to" value="{{ $package->to }}" class="form-control">
+											{!! Form::label('to', 'To', ['class' => 'control-label']) !!}
+											{!! Form::date('to', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 								</div>
-								
+								<h3 class="box-title m-t-40">Hotel Accommodation</h3>
+								<hr>
+								<div class="row p-t-20">
+									<div class="col-md-6">
+										<div class="form-group">
+											{!! Form::label('hotel_name', 'Hotel', ['class' => 'control-label']) !!}
+											{!! Form::text('hotel_name', null, ['class' => 'form-control']) !!}
+										</div>
+									</div>
+									<div class="col-md-6">
+
+									</div>
+								</div>
 							</div>
 							<div class="form-actions">
-								<button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+								<!--<i class="fa fa-check"></i>-->
+								{!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
 								<a href="{{route('packages.index')}}" class="btn btn-inverse">Cancel</a>
 							</div>
 						</form>
@@ -102,6 +114,12 @@
     <script src="{{asset('assets/js/custom.min.js')}}"></script>
 	<script src="{{asset('assets/plugins/summernote/summernote-bs4.min.js')}}"></script>
 	<script src="{{asset('assets/plugins/summernote/form-summernote.init.js')}}"></script>
+	<script src="{{asset('assets/plugins/select2/dist/js/select2.full.min.js')}}"></script>
+    <script>
+    $(function() {
+        $(".select2").select2();
+    });
+    </script>
    </body>
 </html>
 @endsection

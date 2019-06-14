@@ -12,6 +12,7 @@
       <link rel="stylesheet" href="{{asset('assets/plugins/c3-master/c3.min.css')}}">
       <link rel="stylesheet" href="{{asset('assets/plugins/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
 	  <link rel="stylesheet" href="{{asset('assets/plugins/select2/dist/css/select2.min.css')}}">
+	  <link rel="stylesheet" href="{{asset('assets/plugins/switchery/dist/switchery.min.css')}}">
 	  <link rel="stylesheet" href="{{asset('assets/plugins/summernote/summernote-bs4.css')}}">
       <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
       <link rel="stylesheet" href="{{asset('assets/css/pages/dashboard3.css')}}">
@@ -30,12 +31,10 @@
 			   <div class="navbar-header">
 				  <a class="navbar-brand" href="/">
 				  <b>
-				  <img src="{{asset('assets/img/logo-icon.png')}}" alt="homepage" width="80" class="dark-logo" />
-				  <img src="{{asset('assets/img/logo-light-icon.png')}}" alt="homepage" class="light-logo" />
+				  <img src="{{asset('assets/img/logo-icon.png')}}" alt="" width="80" class="dark-logo" />
 				  </b>
 				  <span>
-				  <img src="{{asset('assets/img/logo-text.png')}}" width="130" alt="homepage" class="dark-logo" />
-				  <img src="{{asset('assets/img/logo-light-text.png')}}" class="light-logo" alt="homepage" />
+				  <img src="{{asset('assets/img/logo-text.png')}}" width="130" alt="" class="dark-logo" />
 				  </span> 
 				  </a>
 			   </div>
@@ -53,8 +52,8 @@
 								 <div class="dw-user-box">
 									<div class="u-img"><img src="{{asset('assets/img/users/1.jpg')}}" alt="user"></div>
 									<div class="u-text">
-									   <h4>Steave Jobs</h4>
-									   <p class="text-muted">varun@gmail.com</p>
+									   <h4>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</h4>
+									   <p class="text-muted">{{ Auth::user()->email }}</p>
 									</div>
 								 </div>
 							  </li>
@@ -79,10 +78,15 @@
 			   <nav class="sidebar-nav">
 				  <ul id="sidebarnav">
 					 <li class="user-profile">
-						<a class="has-arrow waves-effect waves-dark" aria-expanded="false"><img src="{{asset('assets/img/users/profile.png')}}" alt="user" /><span class="hide-menu">Elias Elia </span></a>
+						<a class="has-arrow waves-effect waves-dark" aria-expanded="false"><img src="{{asset('assets/img/users/profile.png')}}" alt="user" /><span class="hide-menu">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</span></a>
 						<ul aria-expanded="false" class="collapse">
 						   <li><a href="#">My Profile</a></li>
-						   <li><a href="#">Logout</a></li>
+						   <li>
+								<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> {{ __('Logout') }}</a>
+								<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+									@csrf
+								</form>
+							</li>
 						</ul>
 					 </li>
 					 <li class="nav-devider"></li>

@@ -9,7 +9,8 @@
             <div class="col-md-7 align-self-center">
                <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
-                  <li class="breadcrumb-item active">Clients</li>
+                  <li class="breadcrumb-item active"><a href="{{ route('clients.index') }}">Clients</a></li>
+				  <li class="breadcrumb-item active">Create Client</li>
                </ol>
             </div>
          </div>
@@ -29,7 +30,7 @@
 						<h4 class="m-b-0 text-white"><i class="mdi mdi-grease-pencil"></i> Edit Content</h4>
 					</div>
 					<div class="card-body">
-						<form action="{{route('clients.store')}}" method="POST" enctype="multipart/form-data">
+						{!! Form::open(['route' => 'clients.store', 'method' => 'POST', 'files' => true ]) !!}
 							@csrf
 							<div class="form-body">
 								<h3 class="card-title">Personal Info</h3>
@@ -37,86 +38,83 @@
 								<div class="row p-t-20">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">First Name</label>
-											<input type="text" name="firstname" class="form-control">
+											{!! Form::label('firstname', 'First Name', ['class' => 'control-label']) !!}
+											{!! Form::text('firstname', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Last Name</label>
-											<input type="text" name="lastname" class="form-control">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Gender</label>
-											<select class="form-control custom-select" name="gender">
-												<option disabled selected hidden>--Select Gender--</option>
-												<option value="male">Male</option>
-												<option value="female">Female</option>
-											</select>
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Date of Birth</label>
-											<input type="date" name="date_of_birth" class="form-control" placeholder="dd/mm/yyyy">
+											{!! Form::label('lastname', 'Last Name', ['class' => 'control-label']) !!}
+											{!! Form::text('lastname', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Email</label>
-											<input type="email" name="email" class="form-control">
+											{!! Form::label('gender', 'Gender', ['class' => 'control-label']) !!}
+											{!! Form::select('gender', ['male' => 'Male', 'female' => 'Female'], null, ['class' => 'form-control custom-select']) !!}
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Mobile</label>
-											<input type="text" name="mobile" class="form-control">
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Company</label>
-											<input type="text" name="company" class="form-control">
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											<label class="control-label">Position</label>
-											<input type="text" name="position" class="form-control">
+											{!! Form::label('date_of_birth', 'Date of Birth', ['class' => 'control-label']) !!}
+											{!! Form::date('date_of_birth', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Type</label>
-											<select class="form-control custom-select" name="type">
+											{!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
+											{!! Form::email('email', null, ['class' => 'form-control']) !!}
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											{!! Form::label('mobile', 'Mobile', ['class' => 'control-label']) !!}
+											{!! Form::number('mobile', null, ['class' => 'form-control']) !!}
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											{!! Form::label('company', 'Company', ['class' => 'control-label']) !!}
+											{!! Form::text('company', null, ['class' => 'form-control']) !!}
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											{!! Form::label('position', 'Position', ['class' => 'control-label']) !!}
+											{!! Form::text('position', null, ['class' => 'form-control']) !!}
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											{!! Form::label('type', 'Type', ['class' => 'control-label']) !!}
+											<!--<select class="form-control custom-select" name="type">
 												<option disabled selected hidden>--Select Type--</option>
 												<option value="customer">Customer</option>
 												<option value="supplier">Supplier</option>
-											</select>
+											</select>-->
+											{!! Form::select('type', ['customer' => 'Customer', 'supplier' => 'Supplier'], null, ['class' => 'form-control custom-select']) !!}
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Hot Line</label>
-											<input type="text" name="hotline" class="form-control">
+											{!! Form::label('hotline', 'Hot Line', ['class' => 'control-label']) !!}
+											{!! Form::number('hotline', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Loyalty Card ID</label>
-											<input type="text" name="card" class="form-control">
+											{!! Form::label('card', 'Loyalty Card ID', ['class' => 'control-label']) !!}
+											{!! Form::number('card', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 								</div>
@@ -126,22 +124,22 @@
 								<div class="row p-t-20">
 									<div class="col-md-12">
 										<div class="form-group">
-											<label class="control-label">Street</label>
-											<input type="text" name="street" class="form-control">
+											{!! Form::label('street', 'Street', ['class' => 'control-label']) !!}
+											{!! Form::text('street', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">City</label>
-											<input type="text" name="city" class="form-control">
+											{!! Form::label('city', 'City', ['class' => 'control-label']) !!}
+											{!! Form::text('city', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Post Code</label>
-											<input type="text" name="postcode" class="form-control">
+											{!! Form::label('postcode', 'Post Code', ['class' => 'control-label']) !!}
+											{!! Form::text('postcode', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 								</div>
@@ -150,20 +148,26 @@
 								<div class="row p-t-20">
 									<div class="col-md-4">
 										<div class="form-group">
-											<label class="control-label">Passport N.</label>
-											<input type="text" name="passport_nb" class="form-control">
+											{!! Form::label('passport_nb', 'Passport N.', ['class' => 'control-label']) !!}
+											{!! Form::text('passport_nb', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="form-group">
-											<label class="control-label">Issuance Date</label>
-											<input type="date" name="issuance_date" class="form-control">
+											{!! Form::label('issuance_date', 'Issuance Date', ['class' => 'control-label']) !!}
+											{!! Form::date('issuance_date', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="form-group">
-											<label class="control-label">Expiry Date</label>
-											<input type="date" name="expiry_date" class="form-control">
+											{!! Form::label('expiry_date', 'Expiry Date', ['class' => 'control-label']) !!}
+											{!! Form::date('expiry_date', null, ['class' => 'form-control']) !!}
+										</div>
+									</div>
+									<div class="col-md-4">
+										<div class="form-group">
+											{!! Form::label('image', 'Photo Passport') !!}
+											{!! Form::file('image', ['class' => 'form-control upl-file']) !!}
 										</div>
 									</div>
 								</div>
@@ -172,17 +176,18 @@
 								<div class="row p-t-20">
 									<div class="col-md-12">
 										<div class="form-group">
-											<label class="control-label">Comments</label>
-											<textarea class="summernote-editor" name="comment"></textarea>
+											{!! Form::label('comment', 'Comments', ['class' => 'control-label']) !!}
+											{!! Form::textarea('comment', null, ['class' => 'summernote-editor']) !!}
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="form-actions">
-								<button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+								<!--<i class="fa fa-check"></i>-->
+								{!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
 								<a href="{{route('clients.index')}}" class="btn btn-inverse">Cancel</a>
 							</div>
-						</form>
+						{!! Form::close() !!}
 					</div>
 				</div>
 			</div>
@@ -199,8 +204,18 @@
     <script src="{{asset('assets/plugins/sticky-kit-master/dist/sticky-kit.min.js')}}"></script>
     <script src="{{asset('assets/plugins/sparkline/jquery.sparkline.min.js')}}"></script>
     <script src="{{asset('assets/js/custom.min.js')}}"></script>
+	<script src="{{asset('assets/plugins/switchery/dist/switchery.min.js')}}"></script>
 	<script src="{{asset('assets/plugins/summernote/summernote-bs4.min.js')}}"></script>
 	<script src="{{asset('assets/plugins/summernote/form-summernote.init.js')}}"></script>
+	<script>
+    $(function() {
+        // Switchery
+        var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+        $('.js-switch').each(function() {
+            new Switchery($(this)[0], $(this).data());
+        });
+    });
+    </script>
    </body>
 </html>
 @endsection

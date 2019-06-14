@@ -8,8 +8,9 @@
             </div>
             <div class="col-md-7 align-self-center">
                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
-                  <li class="breadcrumb-item active">Users</li>
+					<li class="breadcrumb-item"><a href="/">Dashboard</a></li>
+					<li class="breadcrumb-item active"><a href="{{ route('users.index') }}">Users</a></li>
+					<li class="breadcrumb-item active">Create User</li>
                </ol>
             </div>
          </div>
@@ -29,65 +30,74 @@
 						<h4 class="m-b-0 text-white"><i class="mdi mdi-grease-pencil"></i> Edit Content</h4>
 					</div>
 					<div class="card-body">
-						<form action="{{route('users.store')}}" method="POST" enctype="multipart/form-data">
+						{!! Form::open(['route' => 'users.store', 'method' => 'POST', 'files' => true ]) !!}
 							@csrf
 							<div class="form-body">
 								<div class="row p-t-20">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">First Name</label>
-											<input type="text" name="first_name" class="form-control">
+											{!! Form::label('first_name', 'First Name', ['class' => 'control-label']) !!}
+											{!! Form::text('first_name', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Last Name</label>
-											<input type="text" name="last_name" class="form-control">
+											{!! Form::label('last_name', 'Last Name', ['class' => 'control-label']) !!}
+											{!! Form::text('last_name', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Email</label>
-											<input type="email" name="email" class="form-control">
+											{!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
+											{!! Form::email('email', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Password</label>
-											<input type="password" name="password" class="form-control">
+											{!! Form::label('password', 'Password', ['class' => 'control-label']) !!}
+											{!! Form::password('password', ['class' => 'form-control']) !!}
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Date of Birth</label>
-											<input type="date" name="date_of_birth" class="form-control" placeholder="dd/mm/yyyy">
+											{!! Form::label('date_of_birth', 'Date of Birth', ['class' => 'control-label']) !!}
+											{!! Form::date('date_of_birth', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Phone</label>
-											<input type="text" name="phone" class="form-control">
+											{!! Form::label('phone', 'Phone', ['class' => 'control-label']) !!}
+											{!! Form::number('phone', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Is Active</label>
-											<input type="checkbox" name="is_active" class="form-control" value="1"/>
+											{!! Form::label('avatar', 'Avatar', ['class' => 'control-label']) !!}
+											{!! Form::file('avatar', ['class' => 'form-control upl-file']) !!}
 										</div>
 									</div>
-								</div>
+									<div class="col-md-6">
+										<div class="form-group">
+												{!! Form::label('is_active', 'Is Active', ['class' => 'control-label']) !!}
+											<div>
+												{!! Form::checkbox('is_active', 1, null, ['class' => 'js-switch', 'data-color'=> '#009efb']) !!}
+											</div>
+										</div>
+									</div>
+								</div> 
 							</div>
 							<div class="form-actions">
-								<button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+								<!--<i class="fa fa-check"></i>-->
+								{!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
 								<a href="{{route('users.index')}}" class="btn btn-inverse">Cancel</a>
 							</div>
-						</form>
+						{!! Form::close() !!}
 					</div>
 				</div>
 			</div>
@@ -104,8 +114,18 @@
     <script src="{{asset('assets/plugins/sticky-kit-master/dist/sticky-kit.min.js')}}"></script>
     <script src="{{asset('assets/plugins/sparkline/jquery.sparkline.min.js')}}"></script>
     <script src="{{asset('assets/js/custom.min.js')}}"></script>
+	<script src="{{asset('assets/plugins/switchery/dist/switchery.min.js')}}"></script>
 	<script src="{{asset('assets/plugins/summernote/summernote-bs4.min.js')}}"></script>
 	<script src="{{asset('assets/plugins/summernote/form-summernote.init.js')}}"></script>
+	<script>
+    $(function() {
+        // Switchery
+        var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+        $('.js-switch').each(function() {
+            new Switchery($(this)[0], $(this).data());
+        });
+    });
+    </script>
    </body>
 </html>
 @endsection

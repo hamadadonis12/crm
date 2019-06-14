@@ -14,9 +14,9 @@ class CreatePackagesTable extends Migration
     public function up()
     {
         Schema::create('packages', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->bigIncrements('id');
+            $table->increments('id');
 			$table->string('name');
+			
 			$table->date('from');
 			$table->date('to');	
 

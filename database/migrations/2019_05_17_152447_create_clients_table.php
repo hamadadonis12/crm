@@ -14,8 +14,7 @@ class CreateClientsTable extends Migration
     public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->bigIncrements('id');
+            $table->increments('id');
 			$table->string('firstname');
 			$table->string('lastname');
 			$table->string('gender');

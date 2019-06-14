@@ -9,7 +9,8 @@
             <div class="col-md-7 align-self-center">
                <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
-                  <li class="breadcrumb-item active">Clients</li>
+                  <li class="breadcrumb-item active"><a href="{{ route('clients.index') }}">Clients</a></li>
+				  <li class="breadcrumb-item active">Edit Client</li>
                </ol>
             </div>
          </div>
@@ -34,7 +35,7 @@
 						<h4 class="m-b-0 text-white"><i class="mdi mdi-grease-pencil"></i> Edit Content</h4>
 					</div>
 					<div class="card-body">
-						<form action="{{route('clients.update', $client->id)}}" method="POST" enctype="multipart/form-data">
+						{!! Form::model( $client, ['route' => ['clients.update', $client->id], 'method' => 'POST', 'files' => true ]) !!}
 							@method('put')
 							@csrf
 							<div class="form-body">
@@ -43,14 +44,14 @@
 								<div class="row p-t-20">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">First Name</label>
-											<input type="text" value="{{ $client->firstname }}" name="firstname" class="form-control">
+											{!! Form::label('firstname', 'First Name') !!}
+											{!! Form::text('firstname', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Last Name</label>
-											<input type="text" value="{{ $client->lastname }}" name="lastname" class="form-control">
+											{!! Form::label('lastname', 'Last Name', ['class' => 'control-label']) !!}
+											{!! Form::text('lastname', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 								</div>
@@ -67,36 +68,36 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Date of Birth</label>
-											<input type="date" name="date_of_birth" value="{{ $client->date_of_birth }}" class="form-control" placeholder="dd/mm/yyyy">
+											{!! Form::label('date_of_birth', 'Date of Birth', ['class' => 'control-label']) !!}
+											{!! Form::date('date_of_birth', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Email</label>
-											<input type="email" value="{{ $client->email }}" name="email" class="form-control">
+											{!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
+											{!! Form::email('email', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Mobile</label>
-											<input type="text" value="{{ $client->mobile }}" name="mobile" class="form-control">
+											{!! Form::label('mobile', 'Mobile', ['class' => 'control-label']) !!}
+											{!! Form::number('mobile', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Company</label>
-											<input type="text" value="{{ $client->company }}" name="company" class="form-control">
+											{!! Form::label('company', 'Company', ['class' => 'control-label']) !!}
+											{!! Form::text('company', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Position</label>
-											<input type="text" value="{{ $client->position }}" name="position" class="form-control">
+											{!! Form::label('position', 'Position', ['class' => 'control-label']) !!}
+											{!! Form::text('position', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 								</div>
@@ -113,16 +114,16 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Hot Line</label>
-											<input type="text" value="{{ $client->hotline }}" name="hotline" class="form-control">
+											{!! Form::label('hotline', 'Hot Line', ['class' => 'control-label']) !!}
+											{!! Form::number('hotline', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Loyalty Card ID</label>
-											<input type="text" value="{{ $client->card }}" name="card" class="form-control">
+											{!! Form::label('card', 'Loyalty Card ID', ['class' => 'control-label']) !!}
+											{!! Form::number('card', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 								</div>
@@ -132,22 +133,22 @@
 								<div class="row p-t-20">
 									<div class="col-md-12">
 										<div class="form-group">
-											<label class="control-label">Street</label>
-											<input type="text" value="{{ $client->street }}" name="street" class="form-control">
+											{!! Form::label('street', 'Street', ['class' => 'control-label']) !!}
+											{!! Form::text('street', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">City</label>
-											<input type="text" value="{{ $client->city }}" name="city" class="form-control">
+											{!! Form::label('city', 'City', ['class' => 'control-label']) !!}
+											{!! Form::text('city', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label class="control-label">Post Code</label>
-											<input type="text" value="{{ $client->postcode }}" name="postcode" class="form-control">
+											{!! Form::label('postcode', 'Post Code', ['class' => 'control-label']) !!}
+											{!! Form::text('postcode', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 								</div>
@@ -156,39 +157,54 @@
 								<div class="row p-t-20">
 									<div class="col-md-4">
 										<div class="form-group">
-											<label class="control-label">Passport N.</label>
-											<input type="text" value="{{ $client->passport_nb }}" name="passport_nb" class="form-control">
+											{!! Form::label('passport_nb', 'Passport N.', ['class' => 'control-label']) !!}
+											{!! Form::text('passport_nb', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="form-group">
-											<label class="control-label">Issuance Date</label>
-											<input type="date" value="{{ $client->issuance_date }}" name="issuance_date" class="form-control">
+											{!! Form::label('issuance_date', 'Issuance Date', ['class' => 'control-label']) !!}
+											{!! Form::date('issuance_date', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
 									<div class="col-md-4">
 										<div class="form-group">
-											<label class="control-label">Expiry Date</label>
-											<input type="date" value="{{ $client->expiry_date }}" name="expiry_date" class="form-control">
+											{!! Form::label('expiry_date', 'Expiry Date', ['class' => 'control-label']) !!}
+											{!! Form::date('expiry_date', null, ['class' => 'form-control']) !!}
 										</div>
 									</div>
+									<div class="col-md-6">
+									<div class="row">
+										<div class="col-md-8">
+											<div class="form-group">
+												{!! Form::label('image', 'Photo Passport', ['class' => 'control-label']) !!}
+												{!! Form::file('image', ['class' => 'form-control upl-file']) !!}
+											</div>
+										</div>
+										<div class="col-md-4">
+											<img src="{{$client->getFirstMediaUrl('client', 'thumb')}}">
+											{!! Form::checkbox('delete_existing_image', 1, null, ['class' => 'js-switch', 'data-color'=> '#009efb']) !!}
+										</div>
+									</div>
+								</div>
 								</div>
 								<h3 class="box-title m-t-40">Notes</h3>
 								<hr>
 								<div class="row p-t-20">
 									<div class="col-md-12">
 										<div class="form-group">
-											<label class="control-label">Comments</label>
-											<textarea class="summernote-editor" name="comment">{{ $client->comment }}</textarea>
+											{!! Form::label('comment', 'Comments', ['class' => 'control-label']) !!}
+											{!! Form::textarea('comment', null, ['class' => 'summernote-editor']) !!}
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="form-actions">
-								<button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+								<!--<i class="fa fa-check"></i>-->
+								{!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
 								<a href="{{route('clients.index')}}" class="btn btn-inverse">Cancel</a>
 							</div>
-						</form>
+						{!! Form::close() !!}
 					</div>
 				</div>
 			</div>
@@ -205,8 +221,18 @@
     <script src="{{asset('assets/plugins/sticky-kit-master/dist/sticky-kit.min.js')}}"></script>
     <script src="{{asset('assets/plugins/sparkline/jquery.sparkline.min.js')}}"></script>
     <script src="{{asset('assets/js/custom.min.js')}}"></script>
+	<script src="{{asset('assets/plugins/switchery/dist/switchery.min.js')}}"></script>
 	<script src="{{asset('assets/plugins/summernote/summernote-bs4.min.js')}}"></script>
 	<script src="{{asset('assets/plugins/summernote/form-summernote.init.js')}}"></script>
+	<script>
+    $(function() {
+        // Switchery
+        var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+        $('.js-switch').each(function() {
+            new Switchery($(this)[0], $(this).data());
+        });
+    });
+    </script>
    </body>
 </html>
 @endsection

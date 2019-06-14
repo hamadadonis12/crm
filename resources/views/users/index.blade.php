@@ -29,7 +29,7 @@
                                  <th>Name</th>
                                  <th>Email</th>
                                  <th>Phone</th>
-                                 <th>Position</th>
+                                 <th>Active</th>
                               </tr>
                            </thead>
                            <tfoot>
@@ -37,7 +37,7 @@
                                  <th>Name</th>
                                  <th>Email</th>
                                  <th>Phone</th> 
-                                 <th>Position</th>
+                                 <th>Active</th>
                               </tr>
                            </tfoot>
                            <tbody>
@@ -46,7 +46,7 @@
                                  <td><a href="{{route('users.show', $user->id)}}">{{ $user->first_name }} {{ $user->last_name }}</a></td>
                                  <td>{{ $user->email }}</td>
                                  <td>{{ $user->phone }}</td>
-								 <td>{{ $user->position }}</td>
+								 <td>{!! $user->is_active == 1 ? '<span class="label label-success">active</span>' : '<span class="label label-danger">not active</span>' !!}</td>
                               </tr>
 							@endforeach
                            </tbody>

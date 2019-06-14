@@ -30,7 +30,6 @@
 								 <th>Client</th>
                                  <th>From</th>
                                  <th>To</th>
-                                 <th>Action</th>
                               </tr>
                            </thead>
                            <tfoot>
@@ -39,25 +38,15 @@
 								 <th>Client</th>
                                  <th>From</th>
                                  <th>To</th>
-                                 <th>Action</th>
                               </tr>
                            </tfoot>
                            <tbody>
 							@foreach($packages as $package)
                               <tr>
-                                 <td>{{ $package->name }}</td>
+                                 <td><a href="{{route('packages.show', $package->id)}}">{{ $package->name }}</a></td>
                                  <td>{{ $package->client->firstname }} {{ $package->client->lastname }}</td>
                                  <td>{{ $package->from }}</td>
 								 <td>{{ $package->to }}</td>
-                                 <td>
-									 <a href="{{route('packages.edit', $package->id)}}" class="btn waves-effect waves-light btn-sm btn-info"><i class="mdi mdi-grease-pencil"></i> Edit</a>
-								<form onsubmit="return confirm('Are you sure you want to delete?');" class="d-inline-block" method="post" action="{{route('packages.destroy', $package->id)}}">
-									@csrf
-									@method('delete')
-									<button type="submit" class="btn waves-effect waves-light btn-sm btn-danger"><i class="mdi mdi-delete"></i> Delete</button>
-								</form>
-									 <button type="button" class="btn waves-effect waves-light btn-sm btn-primary"><i class="mdi mdi-account-card-details"></i> Generate Card</button>
-								 </td>
                               </tr>
 							@endforeach
                            </tbody>
@@ -66,9 +55,8 @@
 					<a href="{{route('packages.create')}}" class="btn btn-info btn-rounded m-t-10 float-left m-l-20">Add New</a>
                   </div>
                </div>
-			   
             </div>
-         </div>
+         </div>				
       </div>
 		<footer class="footer">© 2019 Copyright.</footer>
 	  </div>

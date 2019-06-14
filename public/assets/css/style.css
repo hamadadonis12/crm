@@ -99,11 +99,15 @@ a.link {
     box-shadow: none;
 }
 
+input.form-control.upl-file {
+    height: calc(1.8em + .75rem + 2px);
+}
+
 .center-btn{
 	text-align: center
 }
 
-span.label.label-warning {
+span.label.label-warning, span.label.label-success, span.label.label-danger {
     font-size: 14px;
 }
 

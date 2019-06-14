@@ -9,7 +9,8 @@
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
-                        <li class="breadcrumb-item">Clients</li>
+                        <li class="breadcrumb-item active"><a href="{{ route('clients.index') }}">Clients</a></li>
+						<li class="breadcrumb-item active">Show Client</li>
                     </ol>
                 </div>
             </div>

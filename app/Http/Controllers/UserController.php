@@ -38,13 +38,18 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(UserRequest $request)
-    {
-        $input = $request->all();
+    {		
+		$input = $request->all();
         $input['password'] = Hash::make($request->get('password'));
         $user = User::create($input);
         
         if(!$request->get('is_active'))
             $input['is_active'] = 0;
+		
+		//Add Image
+        if ($request->avatar) {
+            $user->addMedia($request->avatar)->toMediaCollection('avatars');
+        }
 
 		session()->flash('message', 'Your record has been added successfully');
 		return redirect(route('users.index'));
@@ -81,7 +86,7 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {  
-        $input = $request->all();
+		$input = $request->all();
         if(!$request->get('password'))
             $input['password'] = $user->password;
         else
@@ -89,6 +94,15 @@ class UserController extends Controller
         
         if(!$request->get('is_active'))
             $input['is_active'] = 0;
+		
+		//Delete Image
+		if($request->has('delete_existing_image'))
+            $user->clearMediaCollection('avatars');
+		
+        //Update Image
+        if (isset($request->avatar)) {
+            $user->addMedia($request->avatar)->toMediaCollection('avatars');
+        }
         
         $user->update($input);
         
