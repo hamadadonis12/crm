@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Excel;
 use App\Client;
 use Illuminate\Http\Request;
+use App\Exports\ClientsExport;
 use App\Http\Requests\ClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 
@@ -102,5 +104,11 @@ class ClientController extends Controller
         $client->delete();
 		session()->flash('message', 'Your record has been deleted successfully');
 		return redirect(route('clients.index'));
+    }
+
+    public function export()
+    {
+        $export = new ClientsExport();
+        return Excel::download($export, 'clients.xlsx');
     }
 }

@@ -22,4 +22,5 @@ Route::middleware(['auth', 'is-active'])->group(function () {
 	Route::resource('users', 'UserController');
 
 	Route::get('sales', 'SalesController@index')->name('sales.index');
+	Route::get('clients-export', 'ClientController@export')->name('clients.export');
 });
