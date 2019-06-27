@@ -93,7 +93,6 @@
 								</div> 
 							</div>
 							<div class="form-actions">
-								<!--<i class="fa fa-check"></i>-->
 								{!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
 								<a href="{{route('users.index')}}" class="btn btn-inverse">Cancel</a>
 							</div>
