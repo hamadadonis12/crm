@@ -53,7 +53,7 @@
                         </table>
                      </div>
 						<a href="{{route('packages.create')}}" class="btn btn-info btn-rounded m-t-10 float-left m-l-20">Add New</a>
-                  <a href="{{route('packages.export')}}" class="btn btn-warning btn-rounded m-t-10 float-left m-l-20">Export List To Excel</a>
+                  <a href="{{ route('packages.export').'?'.$filterQuery}}" class="btn btn-warning btn-rounded m-t-10 float-left m-l-20">Export List To Excel</a>
 						<a href="{{route('packages.filter')}}" class="btn btn-success btn-rounded m-t-10 float-left m-l-20">Advanced Filter</a>
                   </div>
                </div>

@@ -26,7 +26,8 @@ class PackageController extends Controller
     public function index()
     {
 		$packages = Package::with('client')->get();
-		return view('packages.index', ['packages' => $packages]);
+        $filterQuery = '';
+		return view('packages.index', ['packages' => $packages, 'filterQuery' => $filterQuery]);
     }
 
     /**
@@ -103,9 +104,9 @@ class PackageController extends Controller
 		return redirect(route('packages.index'));
     }
 	
-	public function export()
+	public function export(Request $request)
     {
-        $export = new PackagesExport();
+        $export = new PackagesExport($request->all());
         return Excel::download($export, 'packages.xlsx');
     }
 
@@ -126,6 +127,7 @@ class PackageController extends Controller
 
         $packages = $packageQuery->get();
 
-        return view('packages.index', ['packages' => $packages]);
+        $filterQuery = http_build_query($request->except('_token'));
+        return view('packages.index', ['packages' => $packages, 'filterQuery' => $filterQuery]);
     }
 }

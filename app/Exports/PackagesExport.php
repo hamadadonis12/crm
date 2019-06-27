@@ -14,6 +14,11 @@ class PackagesExport implements FromQuery, ShouldAutoSize, WithHeadings, WithMap
 {
    use Exportable;
 
+    public function __construct(array $filters)
+    {
+        $this->filters = $filters;
+    }
+    
     public function headings(): array
     {
         return [
@@ -38,7 +43,15 @@ class PackagesExport implements FromQuery, ShouldAutoSize, WithHeadings, WithMap
 
     public function query()
     {
-        return Package::orderBy('created_at', 'DESC');
+        $packageQuery = Package::query();
+
+        if(isset($this->filters['client_id']))
+            $packageQuery->where('client_id', $this->filters['client_id']);
+
+        if(isset($this->filters['has_hotel']))
+            $packageQuery->where('has_hotel', 1);
+
+        return $packageQuery;
     }
 }
 
