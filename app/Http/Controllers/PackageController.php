@@ -108,4 +108,24 @@ class PackageController extends Controller
         $export = new PackagesExport();
         return Excel::download($export, 'packages.xlsx');
     }
+
+    public function filter()
+    {
+        return view('packages.filter', ['clients' => $this->clients]);
+    }
+
+    public function doFilter(Request $request)
+    {
+        $packageQuery = Package::query();
+
+        if($request->get('client_id'))
+            $packageQuery->where('client_id', $request->get('client_id'));
+
+        if($request->has('has_hotel'))
+            $packageQuery->where('has_hotel', 1);
+
+        $packages = $packageQuery->get();
+
+        return view('packages.index', ['packages' => $packages]);
+    }
 }
