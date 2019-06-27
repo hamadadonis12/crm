@@ -15,7 +15,7 @@ class PackageController extends Controller
 
     public function __construct()
     {
-        $this->clients = Client::all();
+        $this->clients = Client::orderBy('firstname', 'ASC')->get()->pluck('full_name', 'id')->toArray();
     }
 	
     /**

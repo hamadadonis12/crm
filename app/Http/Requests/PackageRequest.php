@@ -25,14 +25,16 @@ class PackageRequest extends FormRequest
     {
         return [
             'name' 	=> 'required|min:3',
+            'client_id' => 'required'
         ];
     }
 	   
 	public function messages()
     {
         return [
-            'name.required' => 'The Package Name field is required',
-            'name.min' => 'The Package Name Field should be minimum 3 characters',
+            'name.required' => 'The package name field is required',
+            'name.min' => 'The package name Field should be minimum 3 characters',
+            'client_id.required' => 'The client field is required'
         ];
     }
 }
