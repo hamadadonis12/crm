@@ -52,7 +52,8 @@
                            </tbody>
                         </table>
                      </div>
-					<a href="{{route('packages.create')}}" class="btn btn-info btn-rounded m-t-10 float-left m-l-20">Add New</a>
+						<a href="{{route('packages.create')}}" class="btn btn-info btn-rounded m-t-10 float-left m-l-20">Add New</a>
+						<a href="{{route('packages.export')}}" class="btn btn-warning btn-rounded m-t-10 float-left m-l-20">Export List To Excel</a>
                   </div>
                </div>
             </div>

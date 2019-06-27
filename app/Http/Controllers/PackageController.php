@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Excel;
 use App\Client;
 use App\Package;
 use Illuminate\Http\Request;
+use App\Exports\PackagesExport;
 use App\Http\Requests\PackageRequest;
 
 class PackageController extends Controller
@@ -99,5 +101,11 @@ class PackageController extends Controller
         $package->delete();
 		session()->flash('message', 'Your record has been deleted successfully');
 		return redirect(route('packages.index'));
+    }
+	
+	public function export()
+    {
+        $export = new PackagesExport();
+        return Excel::download($export, 'packages.xlsx');
     }
 }

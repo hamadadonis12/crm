@@ -55,8 +55,8 @@
                            </tbody>
                         </table>
                      </div>
-                      <a href="{{route('clients.create')}}" class="btn btn-info btn-rounded m-t-10 float-left m-l-20">Add New</a>
-					       <a href="{{route('clients.export')}}" class="btn btn-warning btn-rounded m-t-10 float-left m-l-20">Export List To Excel</a>
+						<a href="{{route('clients.create')}}" class="btn btn-info btn-rounded m-t-10 float-left m-l-20">Add New</a>
+					    <a href="{{route('clients.export')}}" class="btn btn-warning btn-rounded m-t-10 float-left m-l-20">Export List To Excel</a>
                   </div>
                </div>
 			   
