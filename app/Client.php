@@ -16,7 +16,7 @@ class Client extends Model implements HasMedia
 	protected $fillable = ['firstname', 'lastname', 'gender', 'date_of_birth', 'email', 'mobile', 'company', 'position', 'type', 'hotline', 'card', 'street', 'city', 'postcode', 'passport_nb', 'issuance_date', 'expiry_date', 'comment'];
 
 
-    protected $appends = ['total_packages', 'total_price', 'points_earned'];
+    protected $appends = ['total_packages', 'total_price', 'points_earned', 'full_name'];
 	
 	public function packages()
     {
@@ -46,6 +46,11 @@ class Client extends Model implements HasMedia
         $total = $this->packages->sum('price');
         // every 50$ = 1 point
         return floor($total / 50); 
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->firstname.' '.$this->lastname;
     }
 
 }

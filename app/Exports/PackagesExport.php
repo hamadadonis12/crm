@@ -31,7 +31,7 @@ class PackagesExport implements FromQuery, ShouldAutoSize, WithHeadings, WithMap
             $package->name,
             $package->from,
             $package->to,
-			$package->client->firstname.' '.$package->client->lastname,
+			$package->client->full_name,
             $package->price
         ];
     }
