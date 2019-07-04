@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use Excel;
 use App\Client;
 use App\Package;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Exports\PackagesExport;
 use App\Http\Requests\PackageRequest;
@@ -48,24 +50,7 @@ class PackageController extends Controller
      */
     public function store(PackageRequest $request)
     {
-		$input = $request->all();
-        $Package = Package::create($input);
-		
-		if(!$request->get('has_flight_ticket'))
-            $input['has_flight_ticket'] = 0;
-		
-		if(!$request->get('has_visa'))
-            $input['has_visa'] = 0;
-		
-		if(!$request->get('has_train'))
-            $input['has_train'] = 0;
-		
-		if(!$request->get('has_hotel'))
-            $input['has_hotel'] = 0;
-		
-		if(!$request->get('has_cruise'))
-            $input['has_cruise'] = 0;
-		
+        Package::create($request->all());
 		session()->flash('message', 'Your record has been added successfully');
 		return redirect(route('packages.index'));
     }
@@ -170,11 +155,15 @@ class PackageController extends Controller
         if($request->has('has_train'))
             $packageQuery->where('has_train', 1);
 
-        if($request->from)
-            $packageQuery->where('from', '>=', $request->from);
+        if($request->from) {
+            $fromDate = Carbon::parse($request->from)->format('Y-m-d');
+            $packageQuery->where('from', '>=', $fromDate);
+        }
 
-        if($request->to)
-            $packageQuery->where('to', '<=', $request->to);
+        if($request->to) {
+            $toDate = Carbon::parse($request->to)->format('Y-m-d');
+            $packageQuery->where('to', '>=', $toDate);
+        }
 
         if($request->min_price)
             $packageQuery->where('price', '>=', $request->min_price);
@@ -188,5 +177,11 @@ class PackageController extends Controller
 
         $filterQuery = http_build_query($request->except('_token'));
         return view('packages.index', ['packages' => $packages, 'filterQuery' => $filterQuery]);
+    }
+
+    public function pdf(Package $package)
+    {
+        $pdf = PDF::loadView('pdf.package', ['package' => $package]);
+        return $pdf->download('package_'.$package->name.'.pdf');
     }
 }

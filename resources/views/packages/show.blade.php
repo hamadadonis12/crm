@@ -25,6 +25,8 @@
                             </div>
                             <div class="center-btn">
 								<a href="{{route('packages.edit', $package->id)}}" class="btn waves-effect waves-light btn-sm btn-info"><i class="mdi mdi-grease-pencil"></i> Edit</a>
+								<a href="{{route('packages.pdf', $package->id)}}" class="btn waves-effect waves-light btn-sm btn-info"><i class="mdi mdi-grease-pencil"></i> PDF</a>
+								
 								<form onsubmit="return confirm('Are you sure you want to delete?');" class="d-inline-block" method="post" action="{{route('packages.destroy', $package->id)}}">
 									@csrf
 									@method('delete')
@@ -69,11 +71,13 @@
 										<br>
 										<div class="row">
 											<div class="col-md-2">
-												@if($package->has_hotel == 1)
-													<input type="checkbox" id="has_hotel" class="filled-in chk-col-light-blue" checked disabled />
-												@else
-													<input type="checkbox" id="has_hotel" class="filled-in chk-col-light-blue" disabled />
-												@endif
+												<input 
+													type="checkbox" 
+													id="has_hotel" 
+													class="filled-in chk-col-light-blue" 
+													@if($package->has_hotel) checked @endif 
+													disabled 
+												/>
 												<label for="has_hotel">Hotel</label>
 											</div>
 											<div class="col-md-2">
