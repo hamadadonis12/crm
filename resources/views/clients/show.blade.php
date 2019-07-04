@@ -18,7 +18,7 @@
                     <div class="col-lg-4 col-xlg-3 col-md-5">
                         <div class="card">
                             <div class="card-body">
-                                <center class="m-t-30"> <img src="{{asset('assets/img/users/5.jpg')}}" class="img-circle" width="150" />
+                                <center class="m-t-30"> <img src="{{$client->getFirstMediaUrl('client', 'thumb')}}" class="img-circle" width="150" />
                                     <h4 class="card-title m-t-10">{{ $client->firstname }} {{ $client->lastname }}</h4>
                                     <h6 class="card-subtitle">{{ $client->position }}</h6>
                                 </center>
@@ -32,7 +32,8 @@
 								</form>
 								<button type="button" class="btn waves-effect waves-light btn-sm btn-primary"><i class="mdi mdi-account-card-details"></i> Generate Card</button>
 							</div>
-							<hr class="m-t-10"> 
+							<br>
+							<!--<hr class="m-t-10"> 
                             <div class="card-body"> 
 								<small class="text-muted">Email address </small>
 									<h6>{{ $client->email }}</h6> 
@@ -40,7 +41,7 @@
 									<h6>{{ $client->mobile }}</h6> 
 								<small class="text-muted p-t-30 db">Address</small>
 									<h6>{{ $client->street }}</h6>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                     <div class="col-lg-8 col-xlg-9 col-md-7">
@@ -49,27 +50,99 @@
                                 <div class="tab-pane active" id="profile" role="tabpanel">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-3 col-xs-6 b-r"> <strong>Full Name</strong>
+                                            <div class="col-md-3 col-xs-6 b-r"><strong>Full Name</strong>
                                                 <br>
-                                                <p class="text-muted">Johnathan Deo</p>
+                                                <p class="text-muted">{{ $client->full_name }}</p>
                                             </div>
                                             <div class="col-md-3 col-xs-6 b-r"> <strong>Mobile</strong>
                                                 <br>
-                                                <p class="text-muted">(123) 456 7890</p>
+                                                <p class="text-muted">{{ $client->mobile }}</p>
                                             </div>
                                             <div class="col-md-3 col-xs-6 b-r"> <strong>Email</strong>
                                                 <br>
-                                                <p class="text-muted">johnathan@admin.com</p>
+                                                <p class="text-muted">{{ $client->email }}</p>
                                             </div>
-                                            <div class="col-md-3 col-xs-6"> <strong>Location</strong>
+                                            <div class="col-md-3 col-xs-6"> <strong>Street</strong>
                                                 <br>
-                                                <p class="text-muted">London</p>
+                                                <p class="text-muted">{{ $client->street }}</p>
                                             </div>
                                         </div>
                                         <hr>
-                                        <p class="m-t-30">{!! $client->comment !!}</p>
-                                        
-                                    </div>
+										<div class="row">
+											<div class="col-md-12"><b class="font-medium">Personal Info</b>
+                                                <br>
+                                            </div>
+											<div class="col-md-6">
+												<small class="text-muted p-t-30 db">Gender</small>
+												<h6>{{ $client->gender }}</h6>
+											</div>
+											<div class="col-md-6">
+												<small class="text-muted p-t-30 db">Date of Birth</small>
+												<h6>{{ $client->date_of_birth }}</h6>
+											</div>
+											<div class="col-md-6">
+												<small class="text-muted p-t-30 db">Company</small>
+												<h6>{{ $client->company }}</h6>
+											</div>
+											<div class="col-md-6">
+												<small class="text-muted p-t-30 db">Type</small>
+												<h6>{{ $client->type }}</h6>
+											</div>
+											<div class="col-md-6">
+												<small class="text-muted p-t-30 db">Hot Line</small>
+												<h6>{{ $client->hotline }}</h6>
+											</div>
+											<div class="col-md-6">
+												<small class="text-muted p-t-30 db">Loyalty Card ID </small>
+												<h6>{{ $client->card }}</h6>
+											</div>
+										</div>
+										<hr>
+										<div class="row">
+											<div class="col-md-12"><b class="font-medium">Address Info</b>
+                                                <br>
+                                            </div>
+											<div class="col-md-6">
+												<small class="text-muted p-t-30 db">City</small>
+												<h6>{{ $client->city }}</h6>
+											</div>
+											<div class="col-md-6">
+												<small class="text-muted p-t-30 db">Post Code </small>
+												<h6>{{ $client->postcode }}</h6>
+											</div>
+										</div>
+										<hr>
+										<div class="row">
+											<div class="col-md-12"> <b class="font-medium">Passport Info</b>
+                                                <br>
+                                            </div>
+											<div class="col-md-6">
+												<small class="text-muted p-t-30 db">Passport N. </small>
+												<h6>{{ $client->passport_nb }}</h6>
+											</div>
+											<div class="col-md-6">
+												<small class="text-muted p-t-30 db">Issuance Date</small>
+												<h6>{{ $client->issuance_date }}</h6>
+											</div>
+											<div class="col-md-6">
+												<small class="text-muted p-t-30 db">Expiry Date</small>
+												<h6>{{ $client->expiry_date }}</h6>
+											</div>
+											<div class="col-md-6">
+												<small class="text-muted p-t-30 db">Photo Passport</small>
+												<h6>{{ $client->type }}</h6>
+											</div>
+										</div>
+										<hr>
+										<div class="row">
+											<div class="col-md-12"><b class="font-medium">Notes</b>
+												<br>
+											</div>
+											<div class="col-md-12"> 
+												<p class="m-t-30">{!! $client->comment !!}</p>
+											</div>
+										</div>
+									</div>
                                 </div>
                             </div>
                         </div>

@@ -19,7 +19,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <center class="m-t-30"> <img src="{{$user->getFirstMediaUrl('avatars', 'thumb')}}" class="img-circle" width="150" />
-                                    <h4 class="card-title m-t-10">{{ $user->firstname }} {{ $user->lastname }}</h4>
+                                    <h4 class="card-title m-t-10">{{ $user->full_name }}</h4>
                                     <h6 class="card-subtitle">{{ $user->position }}</h6>
                                 </center>
                             </div>
@@ -38,8 +38,8 @@
 									<h6>{{ $user->email }}</h6> 
 								<small class="text-muted p-t-30 db">Phone</small>
 									<h6>{{ $user->phone }}</h6> 
-								<small class="text-muted p-t-30 db">Address</small>
-									<h6>{{ $user->street }}</h6>
+								<small class="text-muted p-t-30 db">Active</small>
+									<h6>{!! $user->is_active == 1 ? '<span class="label label-success">active</span>' : '<span class="label label-danger">not active</span>' !!}</h6>
                             </div>
                         </div>
                     </div>
@@ -51,23 +51,22 @@
                                         <div class="row">
                                             <div class="col-md-3 col-xs-6 b-r"> <strong>Full Name</strong>
                                                 <br>
-                                                <p class="text-muted">Johnathan Deo</p>
+                                                <p class="text-muted">{{ $user->full_name }}</p>
                                             </div>
                                             <div class="col-md-3 col-xs-6 b-r"> <strong>Mobile</strong>
                                                 <br>
-                                                <p class="text-muted">(123) 456 7890</p>
+                                                <p class="text-muted">{{ $user->phone }}</p>
                                             </div>
                                             <div class="col-md-3 col-xs-6 b-r"> <strong>Email</strong>
                                                 <br>
-                                                <p class="text-muted">johnathan@admin.com</p>
+                                                <p class="text-muted">{{ $user->email }}</p>
                                             </div>
-                                            <div class="col-md-3 col-xs-6"> <strong>Location</strong>
+                                            <div class="col-md-3 col-xs-6"> <strong>Address</strong>
                                                 <br>
-                                                <p class="text-muted">London</p>
+                                                <p class="text-muted">{{ $user->address }}</p>
                                             </div>
                                         </div>
                                         <hr>
-                                        <p class="m-t-30">34</p>
                                     </div>
                                 </div>
                             </div>

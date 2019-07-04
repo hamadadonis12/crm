@@ -26,4 +26,4 @@ Route::middleware(['auth', 'is-active'])->group(function () {
 	Route::get('packages-export', 'PackageController@export')->name('packages.export');
 	Route::get('packagers-filter', 'PackageController@filter')->name('packages.filter');
 	Route::post('packagers-do-filter', 'PackageController@doFilter')->name('packages.doFilter');
-});
+}); 

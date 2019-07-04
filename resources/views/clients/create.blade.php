@@ -119,7 +119,7 @@
 									</div>
 								</div>
 								
-								<h3 class="box-title m-t-40">Address</h3>
+								<h3 class="box-title m-t-40">Address Info</h3>
 								<hr>
 								<div class="row p-t-20">
 									<div class="col-md-12">

@@ -91,6 +91,10 @@ a.link {
   display: inline-block; 
 }
 
+.btn-width{
+	width:100%;
+}
+
 .form-control:focus {
     color: #495057;
     background-color: #fff;

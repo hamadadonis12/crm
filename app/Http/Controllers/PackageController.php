@@ -12,7 +12,7 @@ use App\Http\Requests\PackageRequest;
 class PackageController extends Controller
 {
 	protected $clients;
-
+ 
     public function __construct()
     {
         $this->clients = Client::orderBy('firstname', 'ASC')->get()->pluck('full_name', 'id')->toArray();
@@ -48,8 +48,24 @@ class PackageController extends Controller
      */
     public function store(PackageRequest $request)
     {
-        $package = Package::create($request->all());
-
+		$input = $request->all();
+        $Package = Package::create($input);
+		
+		if(!$request->get('has_flight_ticket'))
+            $input['has_flight_ticket'] = 0;
+		
+		if(!$request->get('has_visa'))
+            $input['has_visa'] = 0;
+		
+		if(!$request->get('has_train'))
+            $input['has_train'] = 0;
+		
+		if(!$request->get('has_hotel'))
+            $input['has_hotel'] = 0;
+		
+		if(!$request->get('has_cruise'))
+            $input['has_cruise'] = 0;
+		
 		session()->flash('message', 'Your record has been added successfully');
 		return redirect(route('packages.index'));
     }
@@ -85,7 +101,24 @@ class PackageController extends Controller
      */
     public function update(PackageRequest $request, Package $package)
     {
-        $package->update($request->all());
+		$input = $request->all();
+		
+        if(!$request->get('has_flight_ticket'))
+            $input['has_flight_ticket'] = 0;
+		
+		if(!$request->get('has_visa'))
+            $input['has_visa'] = 0;
+		
+		if(!$request->get('has_train'))
+            $input['has_train'] = 0;
+		
+		if(!$request->get('has_hotel'))
+            $input['has_hotel'] = 0;
+		
+		if(!$request->get('has_cruise'))
+            $input['has_cruise'] = 0;
+		
+        $package->update($input);
 		
 		session()->flash('message', 'Your record has been updated successfully');
 		return redirect()->back();
@@ -125,7 +158,33 @@ class PackageController extends Controller
         if($request->has('has_hotel'))
             $packageQuery->where('has_hotel', 1);
 
+        if($request->has('has_flight_ticket'))
+            $packageQuery->where('has_flight_ticket', 1);
+
+        if($request->has('has_visa'))
+            $packageQuery->where('has_visa', 1);
+
+        if($request->has('has_cruise'))
+            $packageQuery->where('has_cruise', 1);
+
+        if($request->has('has_train'))
+            $packageQuery->where('has_train', 1);
+
+        if($request->from)
+            $packageQuery->where('from', '>=', $request->from);
+
+        if($request->to)
+            $packageQuery->where('to', '<=', $request->to);
+
+        if($request->min_price)
+            $packageQuery->where('price', '>=', $request->min_price);
+
+        if($request->max_price)
+            $packageQuery->where('price', '<=', $request->max_price);
+
         $packages = $packageQuery->get();
+
+       // dd($request->all());
 
         $filterQuery = http_build_query($request->except('_token'));
         return view('packages.index', ['packages' => $packages, 'filterQuery' => $filterQuery]);

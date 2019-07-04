@@ -25,9 +25,9 @@ class CreatePackagesTable extends Migration
 
             $table->boolean('has_flight_ticket')->default(0); 
             $table->string('ticket_number')->nullable(); 
-
+			
             $table->boolean('has_visa')->default(0);    
-            $table->boolean('visa_name')->nullable();
+            $table->string('visa_name')->nullable();
 
             $table->boolean('has_insurance')->default(0);
             $table->boolean('has_tours')->default(0);

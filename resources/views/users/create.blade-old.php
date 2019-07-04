@@ -10,15 +10,10 @@
                <ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="/">Dashboard</a></li>
 					<li class="breadcrumb-item active"><a href="{{ route('users.index') }}">Users</a></li>
-					<li class="breadcrumb-item active">Edit User</li>
+					<li class="breadcrumb-item active">Create User</li>
                </ol>
             </div>
          </div>
-		@if(session()->has('message'))
-			<div class="alert alert-success">
-				{{session()->get('message')}}
-			</div>
-		@endif
 		@if($errors->all())
 			<div class="alert alert-danger">
 				<ul>
@@ -35,8 +30,7 @@
 						<h4 class="m-b-0 text-white"><i class="mdi mdi-grease-pencil"></i> Edit Content</h4>
 					</div>
 					<div class="card-body">
-						{!! Form::model( $user, ['route' => ['users.update', $user->id], 'method' => 'POST', 'files' => true ]) !!}
-							@method('put')
+						{!! Form::open(['route' => 'users.store', 'method' => 'POST', 'files' => true ]) !!}
 							@csrf
 							<div class="form-body">
 								<div class="row p-t-20">
@@ -90,40 +84,31 @@
 									</div>
 									<div class="col-md-6">
 										{!! Form::label('position', 'Position', ['class' => 'control-label']) !!}
-										{!! Form::text('position', null, ['class' => 'form-control']) !!}	
+										{!! Form::text('position', null, ['class' => 'form-control']) !!}
 									</div>
 								</div> 
 								<div class="row">
 									<div class="col-md-6">
-										<div class="row">
-											<div class="col-md-8">
-												<div class="form-group">
-													{!! Form::label('avatar', 'Avatar', ['class' => 'control-label']) !!}
-													{!! Form::file('avatar', ['class' => 'form-control upl-file']) !!}
-												</div>
-											</div>
-											<div class="col-md-4">
-												<img src="{{$user->getFirstMediaUrl('avatars', 'thumb')}}">
-												{!! Form::checkbox('delete_existing_image', 1, null, ['class' => 'js-switch', 'data-color'=> '#009efb']) !!}
-											</div>
+										<div class="form-group">
+											{!! Form::label('avatar', 'Avatar', ['class' => 'control-label']) !!}
+											{!! Form::file('avatar', ['class' => 'form-control upl-file']) !!}
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											{!! Form::label('is_active', 'Is Active', ['class' => 'control-label']) !!}
+												{!! Form::label('is_active', 'Is Active', ['class' => 'control-label']) !!}
 											<div>
 												{!! Form::checkbox('is_active', 1, null, ['class' => 'js-switch', 'data-color'=> '#009efb']) !!}
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> 
 							</div>
 							<div class="form-actions">
-								<!--<i class="fa fa-check"></i>-->
 								{!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
 								<a href="{{route('users.index')}}" class="btn btn-inverse">Cancel</a>
 							</div>
-						</form>
+						{!! Form::close() !!}
 					</div>
 				</div>
 			</div>

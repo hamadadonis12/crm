@@ -51,6 +51,24 @@ class PackagesExport implements FromQuery, ShouldAutoSize, WithHeadings, WithMap
         if(isset($this->filters['has_hotel']))
             $packageQuery->where('has_hotel', 1);
 
+        if(isset($this->filters['has_flight_ticket']))
+            $packageQuery->where('has_flight_ticket', 1);
+
+        if(isset($this->filters['has_visa']))
+            $packageQuery->where('has_visa', 1);
+            
+        if(isset($this->filters['has_cruise']))
+            $packageQuery->where('has_cruise', 1);
+
+        if(isset($this->filters['has_train']))
+            $packageQuery->where('has_train', 1);
+
+        if(isset($this->filters['from']))
+            $packageQuery->where('from', '>=', $this->filters['from']);
+
+        if(isset($this->filters['to']))
+            $packageQuery->where('to', '<=', $this->filters['to']);
+
         return $packageQuery;
     }
 }

@@ -45,7 +45,7 @@ class UserController extends Controller
         
         if(!$request->get('is_active'))
             $input['is_active'] = 0;
-		
+
 		//Add Image
         if ($request->avatar) {
             $user->addMedia($request->avatar)->toMediaCollection('avatars');

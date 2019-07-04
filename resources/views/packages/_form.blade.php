@@ -42,49 +42,67 @@
 	<h3 class="box-title m-t-40">Package Details</h3>
 	<hr>
 	<div class="row p-t-20">
-		<div class="col-md-3">
-			{!! Form::checkbox('has_hotel', 1, null, ['class' => 'js-switch', 'data-color'=> '#009efb']) !!}
-			{!! Form::label('has_hotel', 'Hotel', ['class' => 'control-label']) !!}
+		<div class="col-md-2">
+			<div class="form-group">
+				{!! Form::checkbox('has_hotel', 1, null, ['class' => 'filled-in chk-col-light-blue', 'id' => 'has_hotel']) !!}
+				{!! Form::label('has_hotel', 'Hotel', ['class' => 'control-label']) !!}
+			</div>
 		</div>
-		<div class="col-md-6">
-			{!! Form::text('hotel_name', null, ['class' => 'form-control', 'placeholder' => 'Enter hotel Name']) !!}
-		</div>
-	</div>
-
-	<div class="row p-t-20">
-		<div class="col-md-3">
-			{!! Form::checkbox('has_flight_ticket', 1, null, ['class' => 'js-switch', 'data-color'=> '#009efb']) !!}
-			{!! Form::label('has_flight_ticket', 'Flight Ticket', ['class' => 'control-label']) !!}
-		</div>
-		<div class="col-md-6">
-			{!! Form::text('ticket_number', null, ['class' => 'form-control', 'placeholder' => 'Enter ticket number']) !!}
+		<div class="col-md-4">
+			<div class="form-group">
+				{!! Form::text('hotel_name', null, ['class' => 'form-control', 'placeholder' => 'Enter Hotel Name']) !!}
+			</div>
 		</div>
 	</div>
 
 	<div class="row p-t-20">
-		<div class="col-md-3">
-			{!! Form::checkbox('has_visa', 1, null, ['class' => 'js-switch', 'data-color'=> '#009efb']) !!}
-			{!! Form::label('has_visa', 'Visa', ['class' => 'control-label']) !!}
+		<div class="col-md-2">
+			<div class="form-group">
+				{!! Form::checkbox('has_flight_ticket', 1, null, ['class' => 'filled-in chk-col-light-blue', 'id' => 'has_flight_ticket']) !!}
+				{!! Form::label('has_flight_ticket', 'Flight Ticket', ['class' => 'control-label']) !!}
+			</div>
 		</div>
-		<div class="col-md-6">
-			{!! Form::text('visa_name', null, ['class' => 'form-control', 'placeholder' => 'Enter visa number']) !!}
+		<div class="col-md-4">
+			<div class="form-group">
+				{!! Form::text('ticket_number', null, ['class' => 'form-control', 'placeholder' => 'Enter Ticket Number']) !!}
+			</div>
 		</div>
 	</div>
 
 	<div class="row p-t-20">
-		<div class="col-md-3">
-			{!! Form::checkbox('has_cruise', 1, null, ['class' => 'js-switch', 'data-color'=> '#009efb']) !!}
-			{!! Form::label('has_cruise', 'Cruise', ['class' => 'control-label']) !!}
+		<div class="col-md-2">
+			<div class="form-group">
+				{!! Form::checkbox('has_visa', 1, null, ['class' => 'filled-in chk-col-light-blue', 'id' => 'has_visa']) !!}
+				{!! Form::label('has_visa', 'Visa', ['class' => 'control-label']) !!}
+			</div>
 		</div>
-		<div class="col-md-6">
-			{!! Form::text('cruise_name', null, ['class' => 'form-control', 'placeholder' => 'Enter cruise name']) !!}
+		<div class="col-md-4">
+			<div class="form-group">
+				{!! Form::text('visa_name', null, ['class' => 'form-control', 'placeholder' => 'Enter Visa Name']) !!}
+			</div>
+		</div>
+	</div>
+
+	<div class="row p-t-20">
+		<div class="col-md-2">
+			<div class="form-group">
+				{!! Form::checkbox('has_cruise', 1, null, ['class' => 'filled-in chk-col-light-blue', 'id' => 'has_cruise']) !!}
+				{!! Form::label('has_cruise', 'Cruise', ['class' => 'control-label']) !!}
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+				{!! Form::text('cruise_name', null, ['class' => 'form-control', 'placeholder' => 'Enter Cruise Name']) !!}
+			</div>
 		</div>
 	</div>
 
 	<div class="row p-t-20" style="margin-bottom: 20px">
-		<div class="col-md-3">
-			{!! Form::checkbox('has_train', 1, null, ['class' => 'js-switch', 'data-color'=> '#009efb']) !!}
-			{!! Form::label('has_train', 'Train', ['class' => 'control-label']) !!}
+		<div class="col-md-2">
+			<div class="form-group">
+				{!! Form::checkbox('has_train', 1, null, ['class' => 'filled-in chk-col-light-blue', 'id' => 'has_train']) !!}
+				{!! Form::label('has_train', 'Train', ['class' => 'control-label']) !!}
+			</div>
 		</div>
 	</div>
 

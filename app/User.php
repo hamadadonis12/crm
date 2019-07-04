@@ -20,8 +20,10 @@ class User extends Authenticatable implements HasMedia
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'email_verified_at', 'password', 'phone', 'date_of_birth', 'is_superadmin', 'is_active'
+        'first_name', 'last_name', 'email', 'email_verified_at', 'password', 'phone', 'date_of_birth', 'address', 'position', 'is_superadmin', 'is_active'
     ];
+
+    protected $appends = ['full_name'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -46,5 +48,10 @@ class User extends Authenticatable implements HasMedia
         $this->addMediaConversion('thumb')
             ->width(100)
             ->height(100);
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->first_name.' '.$this->last_name;
     }
 }

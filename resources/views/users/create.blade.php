@@ -23,84 +23,105 @@
 				</ul> 
 			</div>
 		@endif
+		{!! Form::open(['route' => 'users.store', 'method' => 'POST', 'files' => true ]) !!}
+			@csrf
          <div class="row">
-			<div class="col-lg-12">
+			<div class="col-lg-8">
 				<div class="card">
 					<div class="card-header bg-info">
 						<h4 class="m-b-0 text-white"><i class="mdi mdi-grease-pencil"></i> Edit Content</h4>
 					</div>
 					<div class="card-body">
-						{!! Form::open(['route' => 'users.store', 'method' => 'POST', 'files' => true ]) !!}
-							@csrf
-							<div class="form-body">
-								<div class="row p-t-20">
-									<div class="col-md-6">
-										<div class="form-group">
-											{!! Form::label('first_name', 'First Name', ['class' => 'control-label']) !!}
-											{!! Form::text('first_name', null, ['class' => 'form-control']) !!}
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											{!! Form::label('last_name', 'Last Name', ['class' => 'control-label']) !!}
-											{!! Form::text('last_name', null, ['class' => 'form-control']) !!}
-										</div>
+						<div class="form-body">
+							<div class="row p-t-20">
+								<div class="col-md-6">
+									<div class="form-group">
+										{!! Form::label('first_name', 'First Name', ['class' => 'control-label']) !!}
+										{!! Form::text('first_name', null, ['class' => 'form-control']) !!}
 									</div>
 								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											{!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
-											{!! Form::email('email', null, ['class' => 'form-control']) !!}
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											{!! Form::label('password', 'Password', ['class' => 'control-label']) !!}
-											{!! Form::password('password', ['class' => 'form-control']) !!}
-										</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										{!! Form::label('last_name', 'Last Name', ['class' => 'control-label']) !!}
+										{!! Form::text('last_name', null, ['class' => 'form-control']) !!}
 									</div>
 								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											{!! Form::label('date_of_birth', 'Date of Birth', ['class' => 'control-label']) !!}
-											{!! Form::date('date_of_birth', null, ['class' => 'form-control']) !!}
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-											{!! Form::label('phone', 'Phone', ['class' => 'control-label']) !!}
-											{!! Form::number('phone', null, ['class' => 'form-control']) !!}
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-6">
-										<div class="form-group">
-											{!! Form::label('avatar', 'Avatar', ['class' => 'control-label']) !!}
-											{!! Form::file('avatar', ['class' => 'form-control upl-file']) !!}
-										</div>
-									</div>
-									<div class="col-md-6">
-										<div class="form-group">
-												{!! Form::label('is_active', 'Is Active', ['class' => 'control-label']) !!}
-											<div>
-												{!! Form::checkbox('is_active', 1, null, ['class' => 'js-switch', 'data-color'=> '#009efb']) !!}
-											</div>
-										</div>
-									</div>
-								</div> 
 							</div>
-							<div class="form-actions">
-								{!! Form::submit('Save', ['class' => 'btn btn-success']) !!}
-								<a href="{{route('users.index')}}" class="btn btn-inverse">Cancel</a>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										{!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
+										{!! Form::email('email', null, ['class' => 'form-control']) !!}
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										{!! Form::label('password', 'Password', ['class' => 'control-label']) !!}
+										{!! Form::password('password', ['class' => 'form-control']) !!}
+									</div>
+								</div>
 							</div>
-						{!! Form::close() !!}
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										{!! Form::label('date_of_birth', 'Date of Birth', ['class' => 'control-label']) !!}
+										{!! Form::date('date_of_birth', null, ['class' => 'form-control']) !!}
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										{!! Form::label('phone', 'Phone', ['class' => 'control-label']) !!}
+										{!! Form::number('phone', null, ['class' => 'form-control']) !!}
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										{!! Form::label('address', 'Address', ['class' => 'control-label']) !!}
+										{!! Form::text('address', null, ['class' => 'form-control']) !!}
+									</div>
+								</div>
+								<div class="col-md-6">
+									{!! Form::label('position', 'Position', ['class' => 'control-label']) !!}
+									{!! Form::text('position', null, ['class' => 'form-control']) !!}
+								</div>
+							</div> 
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										{!! Form::label('avatar', 'Avatar', ['class' => 'control-label']) !!}
+										{!! Form::file('avatar', ['class' => 'form-control upl-file']) !!}
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+											{!! Form::label('is_active', 'Is Active', ['class' => 'control-label']) !!}
+										<div>
+											{!! Form::checkbox('is_active', 1, null, ['class' => 'js-switch', 'data-color'=> '#009efb']) !!}
+										</div>
+									</div>
+								</div>
+							</div> 
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="card">
+					<div class="card-header bg-info">
+						<h4 class="m-b-0 text-white"><i class="icon-settings"></i> Action</h4>
+					</div>
+					<div class="card-body">
+						<div class="form-actions">
+							{!! Form::submit('Save', ['class' => 'btn btn-success btn-width m-b-10']) !!}
+							<a href="{{route('users.index')}}" class="btn btn-inverse btn-width">Back</a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		{!! Form::close() !!}
       </div>
 		<footer class="footer">© 2019 Copyright.</footer>
 	</div>

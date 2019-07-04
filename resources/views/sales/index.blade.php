@@ -45,7 +45,7 @@
                               <tr>
                                  <td>
                                     <a href="{{route('clients.show', $client->id)}}">
-                                       {{ $client->firstname }} {{ $client->lastname }}
+                                       {{ $client->full_name }}
                                     </a>
                                  </td>
                                  <td>{{ $client->total_packages }}</td>
