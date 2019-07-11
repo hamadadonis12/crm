@@ -50,15 +50,6 @@ class ClientController extends Controller
         if ($request->image) {
             $client->addMedia($request->image)->toMediaCollection('client');
         }
-		
-		//Notification Birth
-		$date = Carbon::today();
-		$fromDate = Carbon::parse($date)->format('Y-m-d');
-
-		if($request->date_of_birth == $fromDate){
-            $user = Auth::user();
-            Notification::send($user, new ClientBirth);
-        }
         
 		session()->flash('message', 'Your record has been added successfully');
 		return redirect(route('clients.index'));
