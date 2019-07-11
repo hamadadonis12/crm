@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Excel;
+use Notification;
 use App\Client;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Exports\ClientsExport;
 use App\Http\Requests\ClientRequest;
 use App\Http\Requests\UpdateClientRequest;
+use App\Notifications\ClientBirth;
 
 class ClientController extends Controller
 {
@@ -45,6 +49,15 @@ class ClientController extends Controller
 		//Add Image
         if ($request->image) {
             $client->addMedia($request->image)->toMediaCollection('client');
+        }
+		
+		//Notification Birth
+		$date = Carbon::today();
+		$fromDate = Carbon::parse($date)->format('Y-m-d');
+
+		if($request->date_of_birth == $fromDate){
+            $user = Auth::user();
+            Notification::send($user, new ClientBirth);
         }
         
 		session()->flash('message', 'Your record has been added successfully');
