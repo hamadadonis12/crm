@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\User;
 use App\Client;
 use Notification;
 use Carbon\Carbon;
@@ -41,14 +42,15 @@ class SendBirthdayNotification extends Command
      */
     public function handle()
     {
-        $date = Carbon::today();
-        $dateFormat = Carbon::parse($date)->format('Y-m-d');
+        $dateFormat = Carbon::now()->format('Y-m-d');
+        $user = User::where('is_superadmin', '=', 1)->first();
 
         $clients = Client::all();
         foreach($clients as $client) 
         {
             if($client->date_of_birth === $dateFormat){
                 Notification::send($client, new ClientBirth);
+                Notification::send($user, new ClientBirth($client->full_name));
                 $this->line('email sent to '.$client->email);
                 
                 // this is only for mailtrap dev account. it does not allow multiple emails per second.

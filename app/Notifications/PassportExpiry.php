@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Client;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,14 +12,16 @@ class PassportExpiry extends Notification
 {
     use Queueable;
 
+    protected $clientName;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($clientName = null)
     {
-        //
+        $this->clientName = $clientName;
     }
 
     /**
@@ -29,7 +32,10 @@ class PassportExpiry extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        if($notifiable instanceof Client)
+            return ['mail'];
+        else
+            return ['database'];
     }
 
     /**
@@ -41,10 +47,8 @@ class PassportExpiry extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-					->subject('Expiry Passport')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('Your passport will expire in '.env('PASSPORT_EXPIRY_DAYS').' days')
+					->subject('Client Passport Expiry');
     }
 
     /**
@@ -53,10 +57,10 @@ class PassportExpiry extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
         return [
-            //
+            'message' => $this->clientName.' passport will expire in '.env('PASSPORT_EXPIRY_DAYS').' days',
         ];
     }
 }

@@ -30,4 +30,6 @@ Route::middleware(['auth', 'is-active'])->group(function () {
 	Route::get('packagers-filter', 'PackageController@filter')->name('packages.filter');
 	Route::post('packagers-do-filter', 'PackageController@doFilter')->name('packages.doFilter');
 	Route::get('packages/{package}/pdf', 'PackageController@pdf')->name('packages.pdf');
+
+	Route::get('notifications', 'NotificationsController@index')->name('notifications.index');
 }); 

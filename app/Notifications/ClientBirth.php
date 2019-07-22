@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Client;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,14 +12,16 @@ class ClientBirth extends Notification
 {
     use Queueable;
 
+    protected $clientName;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($clientName = null)
     {
-        //
+        $this->clientName = $clientName;
     }
 
     /**
@@ -29,7 +32,10 @@ class ClientBirth extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+         if($notifiable instanceof Client)
+            return ['mail'];
+        else
+            return ['database'];
     }
 
     /**
@@ -41,10 +47,8 @@ class ClientBirth extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-					->subject('Happy Birthday')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->line('Wishing you a day that is as special in every way as you are. Happy Birthday!')
+					->subject('Happy Birthday from World Wide Travel & Tourism');
     }
 
     /**
@@ -53,10 +57,10 @@ class ClientBirth extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
         return [
-            //
+            'message' => $this->clientName.' birthday is today',
         ];
     }
 }

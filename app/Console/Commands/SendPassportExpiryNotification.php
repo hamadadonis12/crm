@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\User;
 use App\Client;
 use Notification;
 use Carbon\Carbon;
@@ -41,13 +42,16 @@ class SendPassportExpiryNotification extends Command
      */
     public function handle()
     {
-        $dateFormat = Carbon::now()->addDays(30)->format('Y-m-d');
-	
+        $dateFormat = Carbon::now()->addDays(env('PASSPORT_EXPIRY_DAYS', 30))->format('Y-m-d');
+	    $user = User::where('is_superadmin', '=', 1)->first();
+        
         $clients = Client::all();
         foreach($clients as $client) 
         {
             if($client->expiry_date === $dateFormat){
                 Notification::send($client, new PassportExpiry);
+                Notification::send($user, new PassportExpiry($client->full_name));
+
                 $this->line('email sent to '.$client->email);
                 
                 // this is only for mailtrap dev account. it does not allow multiple emails per second.
