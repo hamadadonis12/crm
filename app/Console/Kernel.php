@@ -28,9 +28,9 @@ class Kernel extends ConsoleKernel
                  ->daily()
                  ->runInBackground();
 
-        // $schedule->command('worldtravel:send-passport-expiry-notification')
-        //      ->daily()
-        //      ->runInBackground();
+        $schedule->command('worldtravel:send-passport-expiry-notification')
+				->daily()
+				->runInBackground();
     }
 
     /**

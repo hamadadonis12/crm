@@ -26,7 +26,7 @@
                         <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                            <thead>
                               <tr>
-								 <th>Package Name</th>
+								 <th>Destination</th>
 								 <th>Client</th>
                                  <th>From</th>
                                  <th>To</th>
@@ -34,7 +34,7 @@
                            </thead>
                            <tfoot>
                               <tr>
-								 <th>Package Name</th>
+								 <th>Destination</th>
 								 <th>Client</th>
                                  <th>From</th>
                                  <th>To</th>
@@ -53,7 +53,7 @@
                         </table>
                      </div>
 						<a href="{{route('packages.create')}}" class="btn btn-info btn-rounded m-t-10 float-left m-l-20">Add New</a>
-                  <a href="{{ route('packages.export').'?'.$filterQuery}}" class="btn btn-warning btn-rounded m-t-10 float-left m-l-20">Export List To Excel</a>
+						<a href="{{ route('packages.export').'?'.$filterQuery}}" class="btn btn-warning btn-rounded m-t-10 float-left m-l-20">Export List To Excel</a>
 						<a href="{{route('packages.filter')}}" class="btn btn-success btn-rounded m-t-10 float-left m-l-20">Advanced Filter</a>
                   </div>
                </div>

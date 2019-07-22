@@ -12,6 +12,7 @@ use App\Exports\ClientsExport;
 use App\Http\Requests\ClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 use App\Notifications\ClientBirth;
+use App\Notifications\PassportExpiry;
 
 class ClientController extends Controller
 {
@@ -23,7 +24,8 @@ class ClientController extends Controller
     public function index()
     {
         $clients = Client::all();
-		return view('clients.index', ['clients' => $clients]);
+		$filterQuery = '';
+		return view('clients.index', ['clients' => $clients, 'filterQuery' => $filterQuery]);
     }
 
     /**
@@ -46,7 +48,12 @@ class ClientController extends Controller
     {
         $client = Client::create($request->all());
 		
-		//Add Image
+		//Add Avatar
+        if ($request->avatar) {
+            $client->addMedia($request->avatar)->toMediaCollection('client-avatar');
+        }
+		
+		//Add Passport
         if ($request->image) {
             $client->addMedia($request->image)->toMediaCollection('client');
         }
@@ -110,9 +117,37 @@ class ClientController extends Controller
 		return redirect(route('clients.index'));
     }
 
-    public function export()
+    public function export(Request $request)
     {
-        $export = new ClientsExport();
+        $export = new ClientsExport($request->all());
         return Excel::download($export, 'clients.xlsx');
+    }
+	
+	public function filter()
+    {
+        return view('clients.filter');
+    }
+	
+	public function doFilter(Request $request)
+    {
+        $clientQuery = Client::query();
+
+		if($request->firstname)
+            $clientQuery->where('firstname', $request->firstname);
+		
+		if($request->email)
+            $clientQuery->where('email', $request->email);
+		
+		if($request->mobile)
+            $clientQuery->where('mobile', $request->mobile);
+		
+		if($request->company)
+            $clientQuery->where('company', $request->company);
+
+        $clients = $clientQuery->get();
+		//dd($request->all());
+
+        $filterQuery = http_build_query($request->except('_token'));
+        return view('clients.index', ['clients' => $clients, 'filterQuery' => $filterQuery]);
     }
 }

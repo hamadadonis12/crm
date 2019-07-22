@@ -52,11 +52,12 @@
                                  <td><span class="label label-warning">{{ $client->type }}</span></td>
                               </tr>
 							@endforeach
-                           </tbody>
+                           </tbody> 
                         </table>
                      </div>
 						<a href="{{route('clients.create')}}" class="btn btn-info btn-rounded m-t-10 float-left m-l-20">Add New</a>
 					    <a href="{{route('clients.export')}}" class="btn btn-warning btn-rounded m-t-10 float-left m-l-20">Export List To Excel</a>
+						<a href="{{route('clients.filter')}}" class="btn btn-success btn-rounded m-t-10 float-left m-l-20">Advanced Filter</a>
                   </div>
                </div>
 			   

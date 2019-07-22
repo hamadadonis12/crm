@@ -170,6 +170,9 @@ class PackageController extends Controller
 
         if($request->max_price)
             $packageQuery->where('price', '<=', $request->max_price);
+		
+		if($request->name)
+            $packageQuery->where('name', $request->name);
 
         $packages = $packageQuery->get();
 

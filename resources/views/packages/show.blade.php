@@ -50,7 +50,7 @@
                                 <div class="tab-pane active" id="profile" role="tabpanel">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-3 col-xs-6 b-r"> <strong>Package Name</strong>
+                                            <div class="col-md-3 col-xs-6 b-r"> <strong>Destination</strong>
                                                 <br>
                                                 <p class="text-muted">{{ $package->name }}</p>
                                             </div>

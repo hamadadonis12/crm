@@ -6,23 +6,23 @@ use App\Client;
 use Notification;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
-use App\Notifications\ClientBirth;
+use App\Notifications\PassportExpiry;
 
-class SendBirthdayNotification extends Command
+class SendPassportExpiryNotification extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'worldtravel:send-birthday-notification';
+    protected $signature = 'worldtravel:send-passport-expiry-notification';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'This command will send birthday notification for clients.';
+    protected $description = 'This command will send expiry passport notification for clients.';
 
     /**
      * Create a new command instance.
@@ -42,13 +42,13 @@ class SendBirthdayNotification extends Command
     public function handle()
     {
         $date = Carbon::today();
-        $dateFormat = Carbon::parse($date)->format('Y-m-d');
-
+        $dateFormat = Carbon::parse($date)->format('Y-m-d', strtotime("-30 days"));
+	
         $clients = Client::all();
         foreach($clients as $client) 
         {
-            if($client->date_of_birth === $dateFormat){
-                Notification::send($client, new ClientBirth);
+            if($client->expiry_date < $dateFormat){
+                Notification::send($client, new PassportExpiry);
                 $this->line('email sent to '.$client->email);
                 
                 // this is only for mailtrap dev account. it does not allow multiple emails per second.

@@ -26,7 +26,7 @@
 		{!! Form::open(['route' => 'users.store', 'method' => 'POST', 'files' => true ]) !!}
 			@csrf
          <div class="row">
-			<div class="col-lg-8">
+			<div class="col-lg-9">
 				<div class="card">
 					<div class="card-header bg-info">
 						<h4 class="m-b-0 text-white"><i class="mdi mdi-grease-pencil"></i> Edit Content</h4>
@@ -107,7 +107,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-4">
+			<div class="col-lg-3">
 				<div class="card">
 					<div class="card-header bg-info">
 						<h4 class="m-b-0 text-white"><i class="icon-settings"></i> Action</h4>

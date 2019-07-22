@@ -23,6 +23,9 @@ Route::middleware(['auth', 'is-active'])->group(function () {
 
 	Route::get('sales', 'SalesController@index')->name('sales.index');
 	Route::get('clients-export', 'ClientController@export')->name('clients.export');
+	Route::get('clients-filter', 'ClientController@filter')->name('clients.filter');
+	Route::post('clients-do-filter', 'ClientController@doFilter')->name('clients.doFilter');
+	
 	Route::get('packages-export', 'PackageController@export')->name('packages.export');
 	Route::get('packagers-filter', 'PackageController@filter')->name('packages.filter');
 	Route::post('packagers-do-filter', 'PackageController@doFilter')->name('packages.doFilter');

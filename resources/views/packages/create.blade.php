@@ -23,26 +23,34 @@
 				</ul> 
 			</div>
 		@endif
+		{!! Form::open(['route' => 'packages.store', 'method' => 'POST', 'files' => true ]) !!}
+		@csrf
          <div class="row">
-			<div class="col-lg-12">
+			<div class="col-lg-9">
 				<div class="card">
 					<div class="card-header bg-info">
 						<h4 class="m-b-0 text-white"><i class="mdi mdi-grease-pencil"></i> Edit Content</h4>
 					</div>
 					<div class="card-body">
-						{!! Form::open(['route' => 'packages.store', 'method' => 'POST', 'files' => true ]) !!}
-							@csrf
-							@include('packages._form')
-
-							<div class="form-actions">
-								<button type="submit" class="btn btn-success"><i class="fa fa-check"></i> Save</button>
-								<a href="{{route('packages.index')}}" class="btn btn-inverse">Cancel</a>
-							</div>
-						{!! Form::close() !!}
+						@include('packages._form')
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-3">
+				<div class="card">
+					<div class="card-header bg-info">
+						<h4 class="m-b-0 text-white"><i class="icon-settings"></i> Action</h4>
+					</div>
+					<div class="card-body">
+						<div class="form-actions">
+							{!! Form::submit('Save', ['class' => 'btn btn-success btn-width m-b-10']) !!}
+							<a href="{{route('packages.index')}}" class="btn btn-inverse btn-width">Back</a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		{!! Form::close() !!}
       </div>
 		<footer class="footer">© 2019 Copyright.</footer>
 	</div>

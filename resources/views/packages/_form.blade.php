@@ -9,7 +9,7 @@
 			</div>
 		</div>
 		<div class="col-md-6">
-			{!! Form::label('name', 'Package Name', ['class' => 'control-label']) !!}
+			{!! Form::label('name', 'Destination', ['class' => 'control-label']) !!}
 			{!! Form::text('name', null, ['class' => 'form-control']) !!}
 		</div>
 	</div>

@@ -4,12 +4,12 @@
       <div class="container-fluid">
          <div class="row page-titles">
             <div class="col-md-5 align-self-center">
-               <h3 class="text-themecolor">Packages</h3>
+               <h3 class="text-themecolor">Clients</h3>
             </div>
             <div class="col-md-7 align-self-center">
                <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="/">Dashboard</a></li>
-                  <li class="breadcrumb-item active"><a href="{{ route('packages.index') }}">Packages</a></li>
+                  <li class="breadcrumb-item active"><a href="{{ route('clients.index') }}">Clients</a></li>
 				  <li class="breadcrumb-item active">Filter</li>
                </ol>
             </div>
@@ -23,7 +23,7 @@
 				</ul> 
 			</div>
 		@endif 
-		{!! Form::open(['route' => 'packages.doFilter', 'method' => 'POST' ]) !!}
+		{!! Form::open(['route' => 'clients.doFilter', 'method' => 'POST' ]) !!}
 		@csrf
          <div class="row">
 			<div class="col-lg-9">
@@ -32,7 +32,7 @@
 						<h4 class="m-b-0 text-white"><i class="mdi mdi-grease-pencil"></i> Filter Options</h4>
 					</div>
 					<div class="card-body">
-						@include('packages._filter')
+						@include('clients._filter')
 					</div>
 				</div>
 			</div>
@@ -44,7 +44,7 @@
 					<div class="card-body">
 						<div class="form-actions">
 							{!! Form::submit('Filter', ['class' => 'btn btn-success btn-width m-b-10']) !!}
-							<a href="{{route('packages.index')}}" class="btn btn-inverse btn-width">Back</a>
+							<a href="{{route('clients.index')}}" class="btn btn-inverse btn-width">Back</a>
 						</div>
 					</div>
 				</div>

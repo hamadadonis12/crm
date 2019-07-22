@@ -12,9 +12,9 @@ use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
 class PackagesExport implements FromQuery, ShouldAutoSize, WithHeadings, WithMapping
 {
-   use Exportable;
+	use Exportable;
 
-    public function __construct(array $filters)
+	public function __construct(array $filters)
     {
         $this->filters = $filters;
     }
@@ -68,6 +68,9 @@ class PackagesExport implements FromQuery, ShouldAutoSize, WithHeadings, WithMap
 
         if(isset($this->filters['to']))
             $packageQuery->where('to', '<=', $this->filters['to']);
+		
+		if(isset($this->filters['name']))
+            $packageQuery->where('name', $this->filters['name']);
 
         return $packageQuery;
     }
