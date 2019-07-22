@@ -41,13 +41,12 @@ class SendPassportExpiryNotification extends Command
      */
     public function handle()
     {
-        $date = Carbon::today();
-        $dateFormat = Carbon::parse($date)->format('Y-m-d', strtotime("-30 days"));
+        $dateFormat = Carbon::now()->addDays(30)->format('Y-m-d');
 	
         $clients = Client::all();
         foreach($clients as $client) 
         {
-            if($client->expiry_date < $dateFormat){
+            if($client->expiry_date === $dateFormat){
                 Notification::send($client, new PassportExpiry);
                 $this->line('email sent to '.$client->email);
                 
