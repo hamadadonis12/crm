@@ -44,6 +44,14 @@
 					 <li class="nav-item"> <a class="nav-link sidebartoggler hidden-sm-down waves-effect waves-dark" href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
 				  </ul>
 				  <ul class="navbar-nav my-lg-0">
+				  	<li>
+				  		<a class="nav-link" href="{!! route('notifications.index') !!}">
+				  			Notifications 
+				  			@if(auth()->user()->unreadNotifications->count())
+				  				<span class="badge badge-danger">{!! auth()->user()->unreadNotifications->count() !!}</span>
+				  			@endif
+				  		</a>
+				  	</li>
 					 <li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{asset('assets/img/users/1.jpg')}}" alt="user" class="profile-pic" /></a>
 						<div class="dropdown-menu dropdown-menu-right animated flipInY">
