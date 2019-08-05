@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use PDF;
 use Excel;
+use App\City;
 use App\Client;
 use App\Country;
 use App\Package;
@@ -76,7 +77,7 @@ class PackageController extends Controller
      */
     public function edit(Package $package)
     {
-        return view('packages.edit', [ 'package' => $package, 'clients' => $this->clients ]);
+        return view('packages.edit', [ 'package' => $package, 'clients' => $this->clients, 'countries' => $this->countries ]);
     }
 
     /**
@@ -188,5 +189,11 @@ class PackageController extends Controller
     {
         $pdf = PDF::loadView('pdf.package', ['package' => $package]);
         return $pdf->download('package_'.$package->name.'.pdf');
+    }
+
+    public function loadCities($countryCode)
+    {
+        $cities = City::orderBy('name', 'ASC')->where('country_code', $countryCode)->get()->pluck('name', 'id')->toArray();
+        return view('packages.cities', ['cities' => $cities]);
     }
 }

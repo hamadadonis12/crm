@@ -34,8 +34,14 @@
 		<div class="col-md-6">
 			<div class="form-group">
 				<label class="control-label">Country</label>
-				{!! Form::select('country_code', [null=>'Select a country'] + $countries, null, ['class' => 'select2 form-control custom-select']) !!}
+				{!! Form::select('country_code', 
+					[null=>'Select a country'] + $countries, null, 
+					['class' => 'select2 form-control custom-select', 'id' => 'country_picker']) 
+				!!}
 			</div>
+		</div>
+		<div class="col-md-6" id="city-container">
+
 		</div>
 	</div>
 
@@ -115,6 +121,7 @@
 		</div>
 	</div>
 
+	<input type="text" id="loadedCityId" @if(isset($package)) value="{!! $package->city_id !!}" @endif />
 </div>
 
 <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
@@ -126,5 +133,23 @@
         $('.js-switch').each(function() {
             new Switchery($(this)[0], $(this).data());
         });
+
+        $('#country_picker').on('change', function(){
+        	if( !$(this).val())
+        		return;
+
+        	var countryCode = $(this).val();
+        	$('#city-container').load('/countries/'+ countryCode +'/cities');
+        })
+
+        $(document).ready(function(){
+        	if($("#country_picker").val()) {
+        		var countryCode = $("#country_picker").val();
+        		$('#city-container').load('/countries/'+ countryCode +'/cities', function(){
+        			$("#city_picker").val( $("#loadedCityId").val() );
+        		});
+        		
+        	}
+        })
     });
 </script>
