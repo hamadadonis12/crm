@@ -121,7 +121,14 @@
 		</div>
 	</div>
 
-	<input type="text" id="loadedCityId" @if(isset($package)) value="{!! $package->city_id !!}" @endif />
+	<input 
+		type="hidden" 
+		id="loadedCityId" 
+		@if( old('city_id') ) value="{!! old('city_id') !!}"
+		@elseif( isset($package) ) value="{!! $package->city_id !!}"
+		@else value=""
+		@endif
+	/>
 </div>
 
 <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
