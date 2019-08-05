@@ -30,6 +30,15 @@
 		</div>
 	</div>
 
+	<div class="row p-t-20">
+		<div class="col-md-6">
+			<div class="form-group">
+				<label class="control-label">Country</label>
+				{!! Form::select('country_code', [null=>'Select a country'] + $countries, null, ['class' => 'select2 form-control custom-select']) !!}
+			</div>
+		</div>
+	</div>
+
 	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use PDF;
 use Excel;
 use App\Client;
+use App\Country;
 use App\Package;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -13,11 +14,12 @@ use App\Http\Requests\PackageRequest;
 
 class PackageController extends Controller
 {
-	protected $clients;
+	protected $clients, $countries;
  
     public function __construct()
     {
         $this->clients = Client::orderBy('firstname', 'ASC')->get()->pluck('full_name', 'id')->toArray();
+        $this->countries = Country::orderBy('name', 'ASC')->pluck('name', 'code')->toArray();
     }
 	
     /**
@@ -39,7 +41,7 @@ class PackageController extends Controller
      */
     public function create()
     {
-        return view('packages.create', ['clients' => $this->clients]);
+        return view('packages.create', ['clients' => $this->clients, 'countries' => $this->countries]);
     }
 
     /**

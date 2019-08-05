@@ -42,6 +42,12 @@ class CreatePackagesTable extends Migration
 			
             $table->double('price', 8, 2)->default(0);
 
+            $table->string('country_code', 3)->default(120);
+            $table->foreign('country_code')->references('code')->on('countries')->onDelete('cascade');
+
+            $table->integer('city_id')->unsigned()->nullable();
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

@@ -24,6 +24,8 @@ class Package extends Model
 		'cruise_name',
 		'has_train',
 		'price',
+		'country_code',
+		'city_id'
 	];
 	
 	
