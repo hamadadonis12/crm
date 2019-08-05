@@ -18,18 +18,20 @@
                <div class="card">
                   <div class="card-body">
                      <div class="table-responsive">
-					 	     <ul>
                           @foreach($notifications as $notification)
-                              <li @if(in_array($notification->id, $unreadNotificationIds)) class="text-warning" @endif>
+						  
+                              <div 	@if(in_array($notification->id, $unreadNotificationIds)) 
+										class="alert alert-warning" 
+									@else 
+										class="alert alert-info" 
+									@endif>
                                  {!! $notification->data['message'] !!}
                                  {!! \Carbon\Carbon::parse($notification->created_at)->format('d-m-Y') !!}
-                              </li>
+							  </div>
                           @endforeach
-                        </ul>
                      </div>
                   </div>
                </div>
-			   
             </div>
          </div>
       </div>
