@@ -114,7 +114,14 @@
 						   <li><a href="{!! route('packages.index') !!}">Packages</a></li>
 						   <li><a href="{!! route('sales.index') !!}">Sales</a></li>
 						</ul>
-					 </li> 
+					 </li>
+					 <li>
+						<a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-google-maps"></i><span class="hide-menu">Countries </span></a>
+						<ul aria-expanded="false" class="collapse">
+						   <li><a href="{!! route('countries.index') !!}">Countries</a></li>
+						   <li><a href="{!! route('cities.index') !!}">Cities</a></li>
+						</ul>
+					 </li>					 
 				  </ul>
 			   </nav>
 			</div>

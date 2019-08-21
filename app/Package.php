@@ -28,10 +28,17 @@ class Package extends Model
 		'city_id'
 	];
 	
+	protected $appends = ['country_name'];
 	
 	
 	public function client()
     {
         return $this->belongsTo('App\Client');
     }
+	
+	public function getCountryNameAttribute() 
+    {
+        return $this->packages['country_code'];
+    }
+
 }

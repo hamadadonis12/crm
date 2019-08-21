@@ -65,8 +65,9 @@ class PackageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Package $package)
-    {
+    {	
         return view('packages.show', ['package' => $package]);
+		
     }
 
     /**

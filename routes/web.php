@@ -20,6 +20,9 @@ Route::middleware(['auth', 'is-active'])->group(function () {
 	Route::resource('clients', 'ClientController');
 	Route::resource('packages', 'PackageController');
 	Route::resource('users', 'UserController');
+	Route::resource('countries', 'CountryController');
+	Route::resource('cities', 'CityController');
+
 
 	Route::get('sales', 'SalesController@index')->name('sales.index');
 	Route::get('clients-export', 'ClientController@export')->name('clients.export');

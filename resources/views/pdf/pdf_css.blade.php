@@ -68,4 +68,25 @@
 		font-size: 18px;
 		color: #697386;
 	}
+	
+	img.center-logo {
+		margin-left: auto;
+		margin-right: auto;
+		display: block;
+		text-align: center;
+	}
+	
+	table, td, th {  
+	  border: 1px solid #ddd;
+	  text-align: left;
+	}
+
+	table {
+	  border-collapse: collapse;
+	  width: 100%;
+	}
+
+	th, td {
+	  padding: 15px;
+	}
 </style>

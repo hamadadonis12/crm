@@ -37,10 +37,10 @@
                             <div class="card-body"> 
 								<small class="text-muted">Email address </small>
 									<h6>{{ $package->client->email }}</h6> 
-								<small class="text-muted p-t-30 db">Phone</small>
-									<h6>{{ $package->client->phone }}</h6> 
-								<small class="text-muted p-t-30 db">Address</small>
-									<h6>{{ $package->client->address }}</h6>
+								<small class="text-muted p-t-30 db">Country</small>
+									<h6>{{ $package->country->name }}</h6> 
+								<small class="text-muted p-t-30 db">City</small>
+									<h6></h6>
                             </div>
                         </div>
                     </div>

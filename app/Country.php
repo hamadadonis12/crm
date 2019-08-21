@@ -24,8 +24,8 @@ class Country extends Model
         return $this->hasMany(City::class, 'country_code', 'code');
     }
 
-    public function packages(): HasMany
+    public function packages()
     {
-        return $this->hasMany(Package::class, 'country_code', 'id');
+        return $this->hasMany('App\Package');
     }
 }
