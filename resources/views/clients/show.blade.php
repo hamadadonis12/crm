@@ -94,7 +94,7 @@
 											</div>
 											<div class="col-md-6">
 												<small class="text-muted p-t-30 db">Loyalty Card ID </small>
-												<h6>{{ $client->card }}</h6>
+												<h6>{{ $client->loyalty_card_id }}</h6>
 											</div>
 										</div>
 										<hr>

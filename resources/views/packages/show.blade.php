@@ -38,9 +38,9 @@
 								<small class="text-muted">Email address </small>
 									<h6>{{ $package->client->email }}</h6> 
 								<small class="text-muted p-t-30 db">Country</small>
-									<h6>{{ $package->country->name }}</h6> 
+									<h6>{!! $package->country->name !!}</h6> 
 								<small class="text-muted p-t-30 db">City</small>
-									<h6></h6>
+									<h6>{!! $package->city->name !!}</h6>
                             </div>
                         </div>
                     </div>

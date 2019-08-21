@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\City;
-use App\Country;
+use App\Country; 
 use Illuminate\Http\Request;
 use App\Http\Requests\CityRequest;
 
@@ -23,7 +23,7 @@ class CityController extends Controller
      */
     public function index()
     {
-		$cities = City::with('country')->get();
+        $cities = City::with('country')->get();
 		return view('cities.index', ['cities' => $cities]);
     }
 

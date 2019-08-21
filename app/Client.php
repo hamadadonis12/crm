@@ -16,7 +16,7 @@ class Client extends Model implements HasMedia
 	protected $fillable = ['firstname', 'lastname', 'gender', 'date_of_birth', 'email', 'mobile', 'company', 'position', 'type', 'hotline', 'card', 'street', 'city', 'postcode', 'passport_nb', 'issuance_date', 'expiry_date', 'comment'];
 
 
-    protected $appends = ['total_packages', 'total_price', 'points_earned', 'full_name'];
+    protected $appends = ['total_packages', 'total_price', 'points_earned', 'full_name', 'loyalty_card_id'];
 	
 	public function packages()
     {
@@ -51,6 +51,27 @@ class Client extends Model implements HasMedia
     public function getFullNameAttribute()
     {
         return $this->firstname.' '.$this->lastname;
+    }
+
+    public function getLoyaltyCardIdAttribute()
+    {
+        if(!$this->id)
+            return null;
+
+        $prefix = 110219;
+
+        if($this->id < 10)
+            $suffix = '0000';
+        elseif ($this->id >= 10 && $this->id < 100)
+            $suffix = '000';
+        elseif ($this->id >= 100 && $this->id < 1000)
+            $suffix = '00';
+        elseif ($this->id >= 1000 && $this->id < 10000)
+            $suffix = '0';
+        else
+            $suffix = '';
+
+        return $prefix.$suffix.$this->id;
     }
 
 }
