@@ -24,8 +24,7 @@ class UpdateClientRequest extends FormRequest
     public function rules()
     {
         return [
-            'firstname'    => 'required|min:3',
-            'lastname'     => 'required|min:3',
+            'fullname'    => 'required|min:3',
             //'email' => 'required|string|email|max:255|unique:users,email,'.,
         ];
     }
@@ -33,10 +32,8 @@ class UpdateClientRequest extends FormRequest
     public function messages()
     {
         return [
-            'firstname.required' => 'The First Name is required',
-            'firstname.min' => 'The First Name should be minimum 3 characters',
-            'lastname.required' => 'The Last Name is required',
-            'lastname.min' => 'The Last Name should be minimum 3 characters',
+            'fullname.required' => 'The First Name is required',
+            'fullname.min' => 'The First Name should be minimum 3 characters',
         ];
     }
 }

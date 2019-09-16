@@ -44,7 +44,7 @@
 							@foreach($packages as $package)
                               <tr>
                                  <td><a href="{{route('packages.show', $package->id)}}">{{ $package->name }}</a></td>
-                                 <td>{{ $package->client->firstname }} {{ $package->client->lastname }}</td>
+                                 <td>{{ $package->client->fullname }}</td>
                                  <td>{{ $package->from }}</td>
 								 <td>{{ $package->to }}</td>
                               </tr>

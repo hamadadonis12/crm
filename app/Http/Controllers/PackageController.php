@@ -19,7 +19,7 @@ class PackageController extends Controller
  
     public function __construct()
     {
-        $this->clients = Client::orderBy('firstname', 'ASC')->get()->pluck('full_name', 'id')->toArray();
+        $this->clients = Client::orderBy('fullname', 'ASC')->get()->pluck('fullname', 'id')->toArray();
         $this->countries = Country::orderBy('name', 'ASC')->pluck('name', 'code')->toArray();
     }
 	

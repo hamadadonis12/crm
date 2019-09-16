@@ -13,7 +13,7 @@ class Client extends Model implements HasMedia
     use HasMediaTrait, Notifiable;
 	
     protected $table="clients";
-	protected $fillable = ['firstname', 'lastname', 'gender', 'date_of_birth', 'email', 'mobile', 'company', 'position', 'type', 'hotline', 'card', 'street', 'city', 'postcode', 'passport_nb', 'issuance_date', 'expiry_date', 'comment'];
+	protected $fillable = ['fullname', 'gender', 'date_of_birth', 'email', 'mobile', 'company', 'website', 'position', 'type', 'hotline', 'miles', 'country', 'city', 'postcode', 'passport_nb', 'issuance_date', 'expiry_date', 'comment'];
 
 
     protected $appends = ['total_packages', 'total_price', 'points_earned', 'full_name', 'loyalty_card_id'];
@@ -48,10 +48,10 @@ class Client extends Model implements HasMedia
         return floor($total / 50); 
     }
 
-    public function getFullNameAttribute()
+   /* public function getFullNameAttribute()
     {
         return $this->firstname.' '.$this->lastname;
-    }
+    }*/
 
     public function getLoyaltyCardIdAttribute()
     {

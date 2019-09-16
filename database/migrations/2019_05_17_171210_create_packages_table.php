@@ -36,6 +36,7 @@ class CreatePackagesTable extends Migration
             $table->string('cruise_name')->nullable();
             
             $table->boolean('has_train')->default(0);
+			$table->string('train_ticket')->nullable();
 			
 			$table->integer('client_id')->unsigned();
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');

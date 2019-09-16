@@ -22,8 +22,7 @@ class ClientsExport implements FromQuery, ShouldAutoSize, WithHeadings, WithMapp
     public function headings(): array
     {
         return [
-            'firstname', 
-            'lastname', 
+            'fullname', 
             'gender', 
             'email',
 			'mobile',
@@ -37,8 +36,7 @@ class ClientsExport implements FromQuery, ShouldAutoSize, WithHeadings, WithMapp
     public function map($client): array
     {
         return [
-            $client->firstname,
-            $client->lastname,
+            $client->fullname,
             $client->gender,
             $client->email,
 			$client->mobile,
@@ -53,8 +51,8 @@ class ClientsExport implements FromQuery, ShouldAutoSize, WithHeadings, WithMapp
     {
 		$clientQuery = Client::query();
 
-        if(isset($this->filters['firstname']))
-            $clientQuery->where('firstname', $this->filters['firstname']);
+        if(isset($this->filters['fullname']))
+            $clientQuery->where('fullname', $this->filters['fullname']);
 		
 		if(isset($this->filters['email']))
             $clientQuery->where('email', $this->filters['email']);

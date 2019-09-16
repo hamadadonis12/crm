@@ -1,8 +1,8 @@
 <div class="form-body">
 	<div class="row p-t-20">
 		<div class="col-md-6">
-			{!! Form::label('firstname', 'First Name', ['class' => 'control-label']) !!}
-			{!! Form::text('firstname', null, ['class' => 'form-control']) !!}
+			{!! Form::label('fullname', 'Full Name', ['class' => 'control-label']) !!}
+			{!! Form::text('fullname', null, ['class' => 'form-control']) !!}
 		</div>
 		<div class="col-md-6">
 			{!! Form::label('email', 'Email', ['class' => 'control-label']) !!}

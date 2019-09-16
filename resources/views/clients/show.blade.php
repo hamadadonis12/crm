@@ -19,7 +19,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <center class="m-t-30"> <img src="{{$client->getFirstMediaUrl('client-avatar', 'thumb')}}" class="img-circle" width="150" />
-                                    <h4 class="card-title m-t-10">{{ $client->firstname }} {{ $client->lastname }}</h4>
+                                    <h4 class="card-title m-t-10">{{ $client->fullname }}</h4>
                                     <h6 class="card-subtitle">{{ $client->position }}</h6>
                                 </center>
                             </div>
@@ -50,21 +50,17 @@
                                 <div class="tab-pane active" id="profile" role="tabpanel">
                                     <div class="card-body">
                                         <div class="row">
-                                            <div class="col-md-3 col-xs-6 b-r"><strong>Full Name</strong>
-                                                <br>
-                                                <p class="text-muted">{{ $client->full_name }}</p>
-                                            </div>
-                                            <div class="col-md-3 col-xs-6 b-r"> <strong>Mobile</strong>
-                                                <br>
-                                                <p class="text-muted">{{ $client->mobile }}</p>
-                                            </div>
-                                            <div class="col-md-3 col-xs-6 b-r"> <strong>Email</strong>
+											<div class="col-md-4 col-xs-6 b-r"> <strong>Email</strong>
                                                 <br>
                                                 <p class="text-muted">{{ $client->email }}</p>
                                             </div>
-                                            <div class="col-md-3 col-xs-6"> <strong>Street</strong>
+                                            <div class="col-md-4 col-xs-6 b-r"> <strong>Mobile</strong>
                                                 <br>
-                                                <p class="text-muted">{{ $client->street }}</p>
+                                                <p class="text-muted">{{ $client->mobile }}</p>
+                                            </div>
+                                            <div class="col-md-4 col-xs-6"> <strong>Country</strong>
+                                                <br>
+                                                <p class="text-muted">{{ $client->country }}</p>
                                             </div>
                                         </div>
                                         <hr>
@@ -89,8 +85,16 @@
 												<h6>{{ $client->type }}</h6>
 											</div>
 											<div class="col-md-6">
+												<small class="text-muted p-t-30 db">Website</small>
+												<h6>{{ $client->website }}</h6>
+											</div>
+											<div class="col-md-6">
 												<small class="text-muted p-t-30 db">Hot Line</small>
 												<h6>{{ $client->hotline }}</h6>
+											</div>
+											<div class="col-md-6">
+												<small class="text-muted p-t-30 db">Cedar Miles</small>
+												<h6>{{ $client->miles }}</h6>
 											</div>
 											<div class="col-md-6">
 												<small class="text-muted p-t-30 db">Loyalty Card ID </small>

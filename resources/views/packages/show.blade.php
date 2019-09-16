@@ -19,7 +19,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <center class="m-t-30"> <img src="{{$package->client->getFirstMediaUrl('client', 'thumb')}}" class="img-circle" width="150" />
-                                    <h4 class="card-title m-t-10">{{ $package->client->firstname }} {{ $package->client->lastname }}</h4>
+                                    <h4 class="card-title m-t-10">{{ $package->client->fullname }}</h4>
                                     <h6 class="card-subtitle">{{ $package->client->position }}</h6>
                                 </center>
                             </div>

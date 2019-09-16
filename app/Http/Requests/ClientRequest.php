@@ -24,8 +24,7 @@ class ClientRequest extends FormRequest
     public function rules()
     {
         return [
-            'firstname' 	=> 'required|min:3',
-			'lastname' 		=> 'required|min:3',
+            'fullname' 		=> 'required|min:3',
 			'email' 		=> 'required|string|email|max:255|unique:clients,email',
         ];
     }
@@ -33,10 +32,8 @@ class ClientRequest extends FormRequest
 	public function messages()
     {
         return [
-            'firstname.required' => 'The First Name field is required',
-            'firstname.min' => 'The First Name Field should be minimum 3 characters',
-			'lastname.required' => 'The Last Name field is required',
-            'lastname.min' => 'The Last Name Field should be minimum 3 characters',
+            'fullname.required' => 'The Full Name field is required',
+            'fullname.min' => 'The Full Name Field should be minimum 3 characters',
         ];
     }
 }

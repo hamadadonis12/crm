@@ -119,6 +119,11 @@
 				{!! Form::label('has_train', 'Train', ['class' => 'control-label']) !!}
 			</div>
 		</div>
+		<div class="col-md-4">
+			<div class="form-group">
+				{!! Form::text('train_ticket', null, ['class' => 'form-control', 'placeholder' => 'Enter Train Ticket']) !!}
+			</div>
+		</div>
 	</div>
 
 	<input 

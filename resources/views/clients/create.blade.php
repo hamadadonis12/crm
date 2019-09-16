@@ -38,14 +38,14 @@
 							<div class="row p-t-20">
 								<div class="col-md-6">
 									<div class="form-group">
-										{!! Form::label('firstname', 'First Name', ['class' => 'control-label']) !!}
-										{!! Form::text('firstname', null, ['class' => 'form-control']) !!}
+										{!! Form::label('fullname', 'Full Name') !!}
+										{!! Form::text('fullname', null, ['class' => 'form-control']) !!}
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										{!! Form::label('lastname', 'Last Name', ['class' => 'control-label']) !!}
-										{!! Form::text('lastname', null, ['class' => 'form-control']) !!}
+										{!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
+										{!! Form::email('email', null, ['class' => 'form-control']) !!}
 									</div>
 								</div>
 							</div>
@@ -66,14 +66,14 @@
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										{!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
-										{!! Form::email('email', null, ['class' => 'form-control']) !!}
+										{!! Form::label('mobile', 'Mobile', ['class' => 'control-label']) !!}
+										{!! Form::number('mobile', null, ['class' => 'form-control']) !!}
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										{!! Form::label('mobile', 'Mobile', ['class' => 'control-label']) !!}
-										{!! Form::number('mobile', null, ['class' => 'form-control']) !!}
+										{!! Form::label('hotline', 'Hot Line', ['class' => 'control-label']) !!}
+										{!! Form::number('hotline', null, ['class' => 'form-control']) !!}
 									</div>
 								</div>
 							</div>
@@ -105,16 +105,16 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										{!! Form::label('hotline', 'Hot Line', ['class' => 'control-label']) !!}
-										{!! Form::number('hotline', null, ['class' => 'form-control']) !!}
+										{!! Form::label('website', 'Website', ['class' => 'control-label']) !!}
+										{!! Form::text('website', null, ['class' => 'form-control']) !!}
 									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										{!! Form::label('card', 'Loyalty Card ID', ['class' => 'control-label']) !!}
-										{!! Form::number('card', null, ['class' => 'form-control']) !!}
+										{!! Form::label('miles', 'Cedar Miles', ['class' => 'control-label']) !!}
+										{!! Form::number('miles', null, ['class' => 'form-control']) !!}
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -130,8 +130,8 @@
 							<div class="row p-t-20">
 								<div class="col-md-12">
 									<div class="form-group">
-										{!! Form::label('street', 'Street', ['class' => 'control-label']) !!}
-										{!! Form::text('street', null, ['class' => 'form-control']) !!}
+										{!! Form::label('country', 'Country', ['class' => 'control-label']) !!}
+										{!! Form::text('country', null, ['class' => 'form-control']) !!}
 									</div>
 								</div>
 							</div>
