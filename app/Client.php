@@ -16,7 +16,7 @@ class Client extends Model implements HasMedia
 	protected $fillable = ['fullname', 'gender', 'date_of_birth', 'email', 'mobile', 'company', 'website', 'position', 'type', 'hotline', 'miles', 'country', 'city', 'postcode', 'passport_nb', 'issuance_date', 'expiry_date', 'comment'];
 
 
-    protected $appends = ['total_packages', 'total_price', 'points_earned', 'full_name', 'loyalty_card_id'];
+    protected $appends = ['total_packages', 'total_price', 'points_earned', 'full_name', 'loyalty_card_id', 'slug'];
 	
 	public function packages()
     {
@@ -72,6 +72,15 @@ class Client extends Model implements HasMedia
             $suffix = '';
 
         return $prefix.$suffix.$this->id;
+    }
+
+    /**
+     * Slug Attribute
+     * @return [type] [description]
+     */
+    public function getSlugAttribute()
+    {
+        return str_slug($this->fullname);
     }
 
 }

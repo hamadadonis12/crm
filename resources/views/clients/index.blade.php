@@ -45,7 +45,7 @@
                            <tbody>
 							@foreach($clients as $client)
                               <tr>
-                                 <td><a href="{{route('clients.show', $client->id)}}">{{ $client->fullname }}</a></td>
+                                 <td><a href="{{route('clients.show', [$client->id, $client->slug])}}">{{ $client->fullname }}</a></td>
                                  <td>{{ $client->email }}</td>
                                  <td>{{ $client->mobile }}</td>
 								 <td>{{ $client->passport_nb }}</td>

@@ -17,7 +17,11 @@ Auth::routes(['register' => false]);
 
 Route::middleware(['auth', 'is-active'])->group(function () {
 	Route::get('/home', 'HomeController@index')->name('home');
-	Route::resource('clients', 'ClientController');
+	
+	Route::resource('clients', 'ClientController')->except(['show']);
+	Route::get('clients/{client}/{slug}', 'ClientController@show')->name('clients.show');
+
+
 	Route::resource('packages', 'PackageController');
 	Route::resource('users', 'UserController');
 	Route::resource('countries', 'CountryController');
