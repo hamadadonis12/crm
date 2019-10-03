@@ -93,12 +93,20 @@ class ClientController extends Controller
      */
     public function update(UpdateClientRequest $request, Client $client)
     {
-        if($request->has('delete_existing_image'))
+        if($request->has('delete_existing_avatar'))
+            $client->clearMediaCollection('client-avatar');
+		
+		if($request->has('delete_existing_image'))
             $client->clearMediaCollection('client');
-        
+        		
+		if (isset($request->avatar)) {
+            $client->addMedia($request->avatar)->toMediaCollection('client-avatar');
+        }
+		
         if (isset($request->image)) {
             $client->addMedia($request->image)->toMediaCollection('client');
         }
+
 		$client->update($request->all());
 		session()->flash('message', 'Your record has been updated successfully');
 		return redirect()->back();

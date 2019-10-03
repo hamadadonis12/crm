@@ -136,7 +136,7 @@
 										</div>
 										<div class="col-md-4">
 											<img src="{{$client->getFirstMediaUrl('client-avatar', 'thumb')}}">
-											{!! Form::checkbox('delete_existing_image', 1, null, ['class' => 'js-switch', 'data-color'=> '#009efb']) !!}
+											{!! Form::checkbox('delete_existing_avatar', 1, null, ['class' => 'js-switch', 'data-color'=> '#009efb']) !!}
 										</div>
 									</div>
 								</div>
