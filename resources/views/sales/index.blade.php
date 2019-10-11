@@ -44,8 +44,8 @@
                      @foreach($clients as $client)
                               <tr>
                                  <td>
-                                    <a href="{{route('clients.show', $client->id)}}">
-                                       {{ $client->full_name }}
+                                    <a href="{{route('clients.show', [$client->id, $client->slug])}}">
+                                       {{ $client->fullname }}
                                     </a>
                                  </td>
                                  <td>{{ $client->total_packages }}</td>
