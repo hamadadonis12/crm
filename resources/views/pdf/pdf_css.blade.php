@@ -89,4 +89,154 @@
 	th, td {
 	  padding: 15px;
 	}
+
+/****client****/
+@import url('https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700,700i');
+ *{
+     box-sizing:border-box;
+    
+}
+ body, html{
+     margin:0;
+     padding:0;
+	 font-family: 'Space Mono', monospace;
+}
+
+	h2{
+		font-family: 'Space Mono', monospace;
+		font-size:20px;
+		text-align:center;
+		color: #fff;
+		margin: 5px 0;
+		font-weight: normal;
+	}
+	
+	p.card_numer.code {
+		display: block;
+		width: 100%;
+		word-spacing: 4px;
+		font-size: 14px;
+		letter-spacing: 2px;
+		color: #fff;
+		text-align: center;
+		margin-bottom: 0;
+		margin-top: 0px;
+	}
+	
+	p.card__info.title {
+		margin-bottom: 0;
+		margin-top: 5px;
+		font-size: 13px;
+		line-height: 18px;
+		color: #fff;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		text-align: center;
+	}
+	
+ .title {
+     margin-bottom: 30px;
+     color: #162969;
+}
+ .card{
+     width: 320px;
+     height: 190px;
+     -webkit-perspective: 600px;
+     -moz-perspective: 600px;
+     perspective:600px;
+}
+ .card__part{
+	width:300px;
+	height: 133px;
+    border-radius: 8px;
+	background: #324958;
+
+}
+
+ /*.card__parts{
+     display: inline-block;
+     width: 320px;
+     height: 190px;
+	 background: #bdc3c7; 
+     background: -webkit-linear-gradient(to left, #2c3e50, #bdc3c7);
+	 background: linear-gradient(to left, #324958, #324958);
+     border-radius: 8px;
+
+}*/
+ .card__front{
+     padding: 18px;
+}
+ .card__back {
+     padding: 18px 0;
+}
+ .card__logo {
+     height: 16px;
+}
+ .card__front-logo{
+     position: absolute;
+     top: 18px;
+     right: 18px;
+}
+ .card__square {
+    width: 95px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: block;
+}
+ .card_numer {
+    display: block;
+    width: 100%;
+    word-spacing: 4px;
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #fff;
+    text-align: right;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+ .card__space-75 {
+     width: 75%;
+     float: left;
+}
+ .card__space-25 {
+     width: 25%;
+     float: left;
+	 text-align:right;
+}
+ .card__label {
+     font-size: 10px;
+     text-transform: uppercase;
+     color: rgba(255,255,255,0.8);
+     letter-spacing: 1px;
+}
+ .card__info {
+     margin-bottom: 0;
+     margin-top: 5px;
+     font-size: 16px;
+     line-height: 18px;
+     color: #fff;
+     letter-spacing: 1px;
+     text-transform: uppercase;
+}
+ .card__back-content {
+     padding: 5px 0;
+}
+
+
+ .card__back-logo {
+     position: absolute;
+     bottom: 15px;
+     right: 15px;
+}
+ .card__back-square {
+     position: absolute;
+     bottom: 15px;
+     left: 15px;
+}
+
+.name-bg {
+    background-color: rgb(255, 255, 255, 0.3);
+    padding: 5px;
+}
 </style>

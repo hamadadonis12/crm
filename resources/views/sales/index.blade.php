@@ -41,11 +41,12 @@
                               </tr>
                            </tfoot>
                            <tbody>
-                     @foreach($clients as $client)
+						   
+							@foreach($clients as $client)
                               <tr>
                                  <td>
-                                    <a href="{{route('clients.show', $client->id)}}">
-                                       {{ $client->full_name }}
+                                    <a href="{{route('clients.show', [$client->id, $client->slug])}}">
+                                       {{ $client->fullname }}
                                     </a>
                                  </td>
                                  <td>{{ $client->total_packages }}</td>
@@ -62,6 +63,7 @@
             </div>
          </div>
       </div>
+
 		<footer class="footer">© 2019 Copyright.</footer>
 	  </div>
       <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>

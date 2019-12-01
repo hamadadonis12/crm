@@ -100,7 +100,7 @@
 											<option value="customer">Customer</option>
 											<option value="supplier">Supplier</option>
 										</select>-->
-										{!! Form::select('type', ['customer' => 'Customer', 'supplier' => 'Supplier'], null, ['class' => 'form-control custom-select']) !!}
+										{!! Form::select('type', ['customer' => 'Customer', 'supplier' => 'Supplier','' => 'Other',], null, ['class' => 'form-control custom-select']) !!}
 									</div>
 								</div>
 								<div class="col-md-6">

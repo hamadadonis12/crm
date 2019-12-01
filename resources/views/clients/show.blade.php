@@ -30,7 +30,7 @@
 									@method('delete')
 									<button type="submit" class="btn waves-effect waves-light btn-sm btn-danger"><i class="mdi mdi-delete"></i> Delete</button>
 								</form>
-								<button type="button" class="btn waves-effect waves-light btn-sm btn-primary"><i class="mdi mdi-account-card-details"></i> Generate Card</button>
+								<a href="{{route('clients.pdf', $client->id)}}" class="btn waves-effect waves-light btn-sm btn-primary"><i class="mdi mdi-account-card-details"></i> Generate Card</a>
 							</div>
 							<br>
 							<!--<hr class="m-t-10"> 

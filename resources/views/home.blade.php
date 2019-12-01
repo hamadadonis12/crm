@@ -68,66 +68,87 @@
                   </div>
                </div>
                <div class="row">
-                  <div class="col-lg-6 col-md-12">
-                     <div class="card">
-                        <div class="card-body">
-                           <div class="d-flex">
-                              <div>
-                                 <h3 class="card-title m-b-5"><span class="lstick"></span>Sales Overview </h3>
-                              </div>
-                              <div class="ml-auto">
-                                 <select class="custom-select b-0">
-                                    <option selected value="">January 2019</option>
-                                    <option value="1">February 2017</option>
-                                    <option value="2">March 2017</option>
-                                    <option value="3">April 2017</option>
-                                 </select>
-                              </div>
-                           </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Line Chart</h4>
+                                <div>
+                                    <canvas id="chart1" height="150"></canvas>
+                                </div>
+                            </div>
                         </div>
-                        <div class="bg-theme stats-bar">
-                           <div class="row">
-                              <div class="col-lg-4 col-md-4">
-                                 <div class="p-20 active">
-                                    <h6 class="text-white">Total Sales</h6>
-                                    <h3 class="text-white m-b-0">$10,345</h3>
-                                 </div>
-                              </div>
-                              <div class="col-lg-4 col-md-4">
-                                 <div class="p-20">
-                                    <h6 class="text-white">This Month</h6>
-                                    <h3 class="text-white m-b-0">$7,589</h3>
-                                 </div>
-                              </div>
-                              <div class="col-lg-4 col-md-4">
-                                 <div class="p-20">
-                                    <h6 class="text-white">This Week</h6>
-                                    <h3 class="text-white m-b-0">$1,476</h3>
-                                 </div>
-                              </div>
-                           </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Bar Chart</h4>
+                                <div>
+                                    <canvas id="chart2" height="150"></canvas>
+                                </div>
+                            </div>
                         </div>
-                        <div class="card-body">
-                           <div id="sales-overview2" class="p-relative" style="height:330px;"></div>
-                        </div>
-                     </div>
-                  </div>
+                    </div>
                </div>
             </div>
             <footer class="footer">© 2019 Copyright.</footer>
          </div>
-      <script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
-      <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-      <script type="text/javascript" src="assets/js/perfect-scrollbar.jquery.min.js"></script>
-      <script type="text/javascript" src="assets/js/waves.js"></script>
-      <script type="text/javascript" src="assets/js/sidebarmenu.js"></script>
-      <script type="text/javascript" src="assets/js/custom.min.js"></script>
-      <script type="text/javascript" src="assets/plugins/sparkline/jquery.sparkline.min.js"></script>
-      <script type="text/javascript" src="assets/plugins/chartist-js/dist/chartist.min.js"></script>
-      <script type="text/javascript" src="assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
-      <script type="text/javascript" src="assets/plugins/d3/d3.min.js"></script>
-      <script type="text/javascript" src="assets/plugins/c3-master/c3.min.js"></script>
-      <script type="text/javascript" src="assets/js/dashboard3.js"></script>
+      <script type="text/javascript" src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
+      <script type="text/javascript" src="{{asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
+      <script type="text/javascript" src="{{asset('assets/js/perfect-scrollbar.jquery.min.js')}}"></script>
+      <script type="text/javascript" src="{{asset('assets/js/waves.js')}}"></script>
+      <script type="text/javascript" src="{{asset('assets/js/sidebarmenu.js')}}"></script>
+      <script type="text/javascript" src="{{asset('assets/js/custom.min.js')}}"></script>
+      <script type="text/javascript" src="{{asset('assets/plugins/sparkline/jquery.sparkline.min.js')}}"></script>
+	  <script type="text/javascript" src="{{asset('assets/plugins/Chart.js/chartjs.init.js')}}"></script>
+	  <script type="text/javascript" src="{{asset('assets/plugins/Chart.js/Chart.min.js')}}"></script>
+	 <script>
+	  $(function() {
+    
+		/*<!-- ============================================================== -->*/
+		/*<!-- Line Chart -->*/
+		/*<!-- ============================================================== -->*/
+		new Chart(document.getElementById("chart1"),
+			{
+				"type":"line",
+				"data":{"labels": <?php echo json_encode($labels) ?>,
+				"datasets":[{
+								"label":"My First Dataset",
+								"data":[
+									@foreach($packages as $package)
+										{{ $package->totalPrice }},
+									@endforeach
+									],
+								"fill":false,
+								"borderColor":"rgb(86, 192, 216)",
+								"lineTension":0.1
+							}]
+			},"options":{}});
+		
+		/*<!-- ============================================================== -->*/
+		/*<!-- Bar Chart -->*/
+		/*<!-- ============================================================== -->*/
+		new Chart(document.getElementById("chart2"),
+			{
+				"type":"bar",
+				"data":{"labels": <?php echo json_encode($labels) ?>,
+				"datasets":[{
+								"label":"Monthy",
+								"data":[
+									@foreach($packages as $package)
+										{{ $package->totalPrice }},
+									@endforeach
+									],
+								"fill":false,
+								"backgroundColor":["rgba(255, 99, 132, 0.2)","rgba(255, 159, 64, 0.2)","rgba(255, 205, 86, 0.2)","rgba(75, 192, 192, 0.2)","rgba(54, 162, 235, 0.2)","rgba(153, 102, 255, 0.2)","rgba(201, 203, 207, 0.2)"],
+								"borderColor":["rgb(239, 83, 80)","rgb(255, 159, 64)","rgb(255, 178, 43)","rgb(86, 192, 216)","rgb(57, 139, 247)","rgb(153, 102, 255)","rgb(201, 203, 207)"],
+								"borderWidth":1}
+							]},
+				"options":{
+					"scales":{"yAxes":[{"ticks":{"beginAtZero":true}}]}
+				}
+			});
+	});
+	</script>
    </body>
 </html>
 @endsection

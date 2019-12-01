@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use Auth;
 use Excel;
 use Notification;
@@ -68,10 +69,16 @@ class ClientController extends Controller
      * @param  \App\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function show(Client $client, $slug)
+    /*public function show(Client $client, $slug)
+    {   
+        return view('clients.show', ['client' => $client]);
+    }*/
+	
+	public function show(Client $client)
     {   
         return view('clients.show', ['client' => $client]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -157,5 +164,11 @@ class ClientController extends Controller
 
         $filterQuery = http_build_query($request->except('_token'));
         return view('clients.index', ['clients' => $clients, 'filterQuery' => $filterQuery]);
+    }
+	
+	public function pdf(Client $client)
+    {
+        $pdf = PDF::loadView('pdf.client', ['client' => $client]);
+        return $pdf->download('client_'.$client->fullname.'.pdf');
     }
 }
