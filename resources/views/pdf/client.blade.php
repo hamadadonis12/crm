@@ -1,18 +1,30 @@
 @include('pdf/pdf_css')
-<div class="card__front" style="width: 300px; height:20px; border-radius:8px; background: #324958;"> 
-<div>
-      <p class="card_numer">123436258</p>
+<div class="card__front" style="width: 300px; height:160px; border-radius:8px; background: #324958;"> 
+<div style="background-image:url('{!! base_path().'/public/assets/img/map.png' !!}');background-repeat: no-repeat;
+     background-position: center;
+     background-size: cover; width: 299px;height: 160px; margin-top: 0px; margin-left: -15px;">
+<div style="padding-top:20px;">
+      <p class="card_numer">{{ $client->loyalty_card_id }}</p>
       <div class="card__space-75">
          <span class="card__label">Card holder</span>
-         <p class="card__info">Elias Elia</p>
+         <p class="card__info">{{ $client->fullname }}</p>
       </div>
       <div class="card__space-25">
          <span class="card__label">Expires</span>
          <p class="card__info">10/25</p>
       </div>
 	   </div>
-	<div style="background-image:url('{!! base_path().'/public/assets/img/map.png' !!}');background-repeat: no-repeat;
-     background-position: center;
-     background-size: cover; width: 299px;height: 158px; margin-top: -60px; margin-left: -15px;"></div>
+	</div>
 	
 </div>
+
+   
+   
+	<div class="card__front" style="width: 300px; height:160px; border-radius:8px; background: #324958;"> 
+      <div class="">
+         <div style="margin-top:30px;margin-left:auto;text-align:center; margin-right:auto; display:block;">
+           <img style="margin-left:auto;text-align:center; margin-right:auto; display:block;" width="110" src="{!! base_path().'/public/assets/img/small-logo.png' !!}">
+		   <h2>LOYALTY CARD</h2>
+         </div>
+      </div>
+    </div>
