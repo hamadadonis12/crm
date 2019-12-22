@@ -50,8 +50,15 @@ class ClientController extends Controller
         $client = Client::create($request->all());
 		
 		//Add Avatar
-        if ($request->avatar) {
+        /*if ($request->avatar) {
             $client->addMedia($request->avatar)->toMediaCollection('client-avatar');
+        }*/
+		if ($request->avatar) {
+            $ext = $request->file('avatar')->getClientOriginalExtension();
+            $client
+                ->addMedia($request->avatar)
+                ->setFileName("client-".$client->id.'.'.$ext)
+                ->toMediaCollection('client-avatar');
         }
 		
 		//Add Passport
@@ -107,9 +114,16 @@ class ClientController extends Controller
             $client->clearMediaCollection('client');
         		
 		if (isset($request->avatar)) {
-            $client->addMedia($request->avatar)->toMediaCollection('client-avatar');
+            $ext = $request->file('avatar')->getClientOriginalExtension();
+            $client
+                ->addMedia($request->avatar)
+                ->setFileName("client-".$client->id.'.'.$ext)
+                ->toMediaCollection('client-avatar');
         }
-		
+
+        //dd($request->file('avatar'));
+        //dd(pathinfo($request->file('avatar'), PATHINFO_EXTENSION));
+        
         if (isset($request->image)) {
             $client->addMedia($request->image)->toMediaCollection('client');
         }

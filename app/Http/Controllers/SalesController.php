@@ -27,7 +27,6 @@ class SalesController extends Controller
 		
 		
 		$clients = Client::with('packages')->whereHas('packages')->get();
-		
 		/*$clients = Client::whereHas('packages', function($query){
 			$query->where('created_at', '>=', '2019-10-08 17:46:19');
 		})->get();*/
