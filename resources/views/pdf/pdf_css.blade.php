@@ -92,6 +92,8 @@
 
 /****client****/
 @import url('https://fonts.googleapis.com/css?family=Space+Mono:400,400i,700,700i');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i');
+
  *{
      box-sizing:border-box;
     
@@ -99,12 +101,21 @@
  body, html{
      margin:0;
      padding:0;
-	 font-family: 'Space Mono', monospace;
+	 font-family: 'Montserrat', sans-serif !important;
 }
 
 	h2{
-		font-family: 'Space Mono', monospace;
+		font-family: 'Montserrat', sans-serif !important;
 		font-size:20px;
+		text-align:center;
+		color: #fff;
+		margin: 5px 0;
+		font-weight: normal;
+	}
+	
+	h5{
+		font-family: 'Montserrat', sans-serif !important;
+		font-size:12px;
 		text-align:center;
 		color: #fff;
 		margin: 5px 0;
@@ -121,6 +132,7 @@
 		text-align: center;
 		margin-bottom: 0;
 		margin-top: 0px;
+		font-family: 'Montserrat', sans-serif !important;
 	}
 	
 	p.card__info.title {
@@ -189,18 +201,33 @@
     width: 100%;
     word-spacing: 4px;
     font-size: 14px;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     color: #fff;
     text-align: right;
     margin-bottom: 20px;
     margin-top: 20px;
 }
+
+ .card_numer_phone {
+    display: block;
+    width: 100%;
+    word-spacing: 4px;
+    font-size: 10px;
+    letter-spacing: 0px;
+    color: #fff;
+    text-align: right;
+    margin-bottom: 0px;
+	margin-left:-15px;
+    margin-top: 20px;
+}
  .card__space-75 {
      width: 75%;
      float: left;
+	 margin-right:0;
 }
  .card__space-25 {
      width: 25%;
+	 margin-left:0;
      float: left;
 	 text-align:right;
 }

@@ -48,7 +48,11 @@ class UserController extends Controller
 
 		//Add Image
         if ($request->avatar) {
-            $user->addMedia($request->avatar)->toMediaCollection('avatars');
+			$ext = $request->file('avatars')->getClientOriginalExtension();
+            $user
+                ->addMedia($request->avatars)
+                ->setFileName("user-".$user->id.'.'.$ext)
+                ->toMediaCollection('avatars');
         }
 
 		session()->flash('message', 'Your record has been added successfully');
@@ -100,8 +104,16 @@ class UserController extends Controller
             $user->clearMediaCollection('avatars');
 		
         //Update Image
-        if (isset($request->avatar)) {
+        /*if (isset($request->avatar)) {
             $user->addMedia($request->avatar)->toMediaCollection('avatars');
+        }*/
+		
+		if (isset($request->avatar)) {
+            $ext = $request->file('avatar')->getClientOriginalExtension();
+            $user
+                ->addMedia($request->avatar)
+                ->setFileName("user-".$user->id.'.'.$ext)
+                ->toMediaCollection('avatars');
         }
         
         $user->update($input);

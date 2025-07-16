@@ -4,7 +4,7 @@
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>CRM</title>   
+      <title>WorldWide Travel & Tourism CRM</title>   
 	  <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}">
 	  <link rel="stylesheet" href="{{asset('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css')}}">
       <link rel="stylesheet" href="{{asset('assets/plugins/chartist-js/dist/chartist.min.css')}}">
@@ -17,6 +17,9 @@
       <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
       <link rel="stylesheet" href="{{asset('assets/css/pages/dashboard3.css')}}">
       <link rel="stylesheet" href="{{asset('assets/css/colors/default-dark.css')}}">
+	  <link rel="stylesheet" href="{{asset('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css')}}">
+	  <link rel="stylesheet" href="{{asset('assets/plugins/timepicker/bootstrap-timepicker.min.css')}}">
+      <link rel="stylesheet" href="{{asset('assets/plugins/daterangepicker/daterangepicker.css')}}">
    </head>
    <body class="fix-header fix-sidebar card-no-border">
       <!--<div class="preloader">

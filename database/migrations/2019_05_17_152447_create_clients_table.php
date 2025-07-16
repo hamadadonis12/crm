@@ -18,12 +18,12 @@ class CreateClientsTable extends Migration
 			$table->string('fullname')->nullable();
 			$table->string('gender')->nullable();
 			$table->date('date_of_birth')->nullable();
-			$table->string('email')->unique()->nullable();
+			$table->string('email')->nullable();
 			$table->string('mobile')->nullable();
 			$table->string('company')->nullable();
 			$table->string('website')->nullable();
 			$table->string('position')->nullable();
-			$table->string('type')->nullable();
+			 $table->enum('type', ['Customer', 'Supplier', 'MICE', 'Other']);
 			$table->string('hotline')->nullable();
 			$table->string('miles')->nullable();
 			$table->string('country')->nullable();

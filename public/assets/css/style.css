@@ -44,6 +44,10 @@ a.link {
   display: inline-block; 
 }
 
+td.email-lowercase {
+    text-transform: lowercase !important;
+}
+
 .btn-width{
 	width:100%;
 }
@@ -64,7 +68,7 @@ input.form-control.upl-file {
 	text-align: center
 }
 
-span.label.label-warning, span.label.label-success, span.label.label-danger {
+span.label.label-warning, span.label.label-success, span.label.label-danger, span.label.label-primary {
     font-size: 14px;
 }
 

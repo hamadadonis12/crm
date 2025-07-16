@@ -17,55 +17,18 @@
             <div class="col-12">
                <div class="card">
                   <div class="card-body">
-                     <div class="table-responsive">
-					 	@if(session()->has('message'))
-							<div class="alert alert-success">
-								{{session()->get('message')}}
-							</div>
-						@endif
-                        <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
-                           <thead>
-                              <tr>
-                                 <th>Name</th>
-                                 <th>Email</th>
-                                 <th>Phone</th>
-                                 <th>Passport N.</th>
-								 <th>Type</th>
-                              </tr>
-                           </thead>
-                           <tfoot>
-                              <tr>
-                                 <th>Name</th>
-                                 <th>Email</th>
-                                 <th>Phone</th> 
-                                 <th>Passport N.</th>
-								 <th>Type</th>
-                              </tr>
-                           </tfoot>
-                           <tbody>
-							@foreach($clients as $client)
-                              <tr>
-                                 <!--<td><a href="{{route('clients.show', [$client->id, $client->slug])}}">{{ $client->fullname }}</a></td>-->
-								 <td><a href="{{route('clients.show', $client->id)}}">{{ $client->fullname }}</a></td>
-                                 <td>{{ $client->email }}</td>
-                                 <td>{{ $client->mobile }}</td>
-								 <td>{{ $client->passport_nb }}</td>
-                                 <td><span class="label label-warning">{{ $client->type }}</span></td>
-                              </tr>
-							@endforeach
-                           </tbody> 
-                        </table>
-                     </div>
+						<div id="tag_container">
+							@include('clients.pagination_data')
+						</div>
 						<a href="{{route('clients.create')}}" class="btn btn-info btn-rounded m-t-10 float-left m-l-20">Add New</a>
 					    <a href="{{ route('clients.export').'?'.$filterQuery }}" class="btn btn-warning btn-rounded m-t-10 float-left m-l-20">Export List To Excel</a>
 						<a href="{{route('clients.filter')}}" class="btn btn-success btn-rounded m-t-10 float-left m-l-20">Advanced Filter</a>
                   </div>
                </div>
-			   
             </div>
          </div>
       </div>
-		<footer class="footer">© 2019 Copyright.</footer>
+		<footer class="footer">© 2020 Copyright.</footer>
 	  </div>
       <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
       <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
@@ -83,7 +46,7 @@
       <script src="{{asset('assets/js/vfs_fonts.js')}}"></script>
       <script src="{{asset('assets/js/buttons.html5.min.js')}}"></script>
       <script src="{{asset('assets/js/buttons.print.min.js')}}"></script>
-      <script>
+      <!--<script>
          $(function() {
          $('#myTable').DataTable();
          $(document).ready(function() {
@@ -118,10 +81,57 @@
          dom: 'Bfrtip',
 		 "displayLength":20,
 		 "ordering": false,
+		 "paging":   false,
          buttons: []
          });
          $().addClass('btn btn-primary mr-1');
-      </script>
+      </script>-->
+	 <script type="text/javascript">
+		$(window).on('hashchange', function() {
+			if (window.location.hash) {
+				var page = window.location.hash.replace('#', '');
+				if (page == Number.NaN || page <= 0) {
+					return false;
+				} else {
+					getData(page);
+				}
+			}
+		});
+        $(document).ready(function(){
+
+            $(document).on('click', '.pagination a', function(event){
+                event.preventDefault();
+                $('li').removeClass('active');
+                $(this).parent('li').addClass('active');
+                var myurl = $(this).attr('href');
+                var page = $(this).attr('href').split('page=')[1];
+                getData(page);
+            });
+        });
+        function getData(page) {
+            var urlParams = new URLSearchParams(window.location.search);
+            var url = "";
+
+            if(urlParams.toString()) {
+                url = '?' + urlParams + '&page=' + page;
+            }
+            else
+                url = '?page=' + page;
+
+            $.ajax(
+                {
+                url: url,
+                type: "get",
+                datatype: "html"
+
+                }).done(function(data) {
+                $("#tag_container").empty().html(data);
+               // location.hash = page;
+            }).fail(function(jqXHR, ajaxOptions, thrownError) {
+                alert('No response from server');
+            });
+        }
+    </script>
    </body>
 </html>
 	@endsection

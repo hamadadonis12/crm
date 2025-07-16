@@ -90,7 +90,7 @@
                     </div>
                </div>
             </div>
-            <footer class="footer">© 2019 Copyright.</footer>
+            <footer class="footer">© 2020 Copyright.</footer>
          </div>
       <script type="text/javascript" src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
       <script type="text/javascript" src="{{asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>

@@ -15,15 +15,21 @@
 
 	<div class="row">
 		<div class="col-md-6">
-			<div class="form-group">
-				{!! Form::label('from', 'From', ['class' => 'control-label']) !!}
-				{!! Form::date('from', null, ['class' => 'form-control']) !!}
+			<div class="form-group input-group">
+				{!! Form::label('from', 'From', ['class' => 'control-label twitter-typeahead']) !!}
+				{!! Form::text('from', null, ['class' => 'form-control datepicker-autoclose']) !!}
+				<div class="input-group-append">
+					<span class="input-group-text"><i class="icon-calender"></i></span>
+				</div>
 			</div>
 		</div>
 		<div class="col-md-6">
-			<div class="form-group">
-				{!! Form::label('to', 'To', ['class' => 'control-label']) !!}
-				{!! Form::date('to', null, ['class' => 'form-control']) !!}
+			<div class="form-group input-group">
+				{!! Form::label('to', 'To', ['class' => 'control-label twitter-typeahead']) !!}
+				{!! Form::text('to', null, ['class' => 'form-control datepicker-autoclose']) !!}
+				<div class="input-group-append">
+					<span class="input-group-text"><i class="icon-calender"></i></span>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -72,8 +78,18 @@
 	</div>
 </div>
 
+
+
+
+<link href="{{asset('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css')}}" rel="stylesheet"/>
+<link href="{{asset('assets/plugins/timepicker/bootstrap-timepicker.min.css')}}" rel="stylesheet">
+<link href="{{asset('assets/plugins/daterangepicker/daterangepicker.css')}}" rel="stylesheet">
+
 <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('assets/plugins/switchery/dist/switchery.min.js')}}"></script>
+<script src="{{asset('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
+<script src="{{asset('assets/plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
+<script src="{{asset('assets/plugins/daterangepicker/daterangepicker.js')}}"></script>
 <script>
     $(function() {
         // Switchery
@@ -83,3 +99,12 @@
         });
     });
 </script>
+<script>
+// Date Picker
+    jQuery('.mydatepicker, #datepicker').datepicker();
+    jQuery('.datepicker-autoclose').datepicker({
+        autoclose: true,
+		format: "yyyy/mm/dd",
+        todayHighlight: true
+    });
+	</script>

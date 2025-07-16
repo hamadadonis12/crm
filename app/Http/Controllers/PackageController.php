@@ -166,7 +166,7 @@ class PackageController extends Controller
 
         if($request->to) {
             $toDate = Carbon::parse($request->to)->format('Y-m-d');
-            $packageQuery->where('to', '>=', $toDate);
+            $packageQuery->where('to', '<=', $toDate);
         }
 
         if($request->min_price)

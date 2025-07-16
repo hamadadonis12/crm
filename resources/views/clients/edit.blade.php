@@ -44,14 +44,14 @@
 							<div class="row p-t-20">
 								<div class="col-md-6">
 									<div class="form-group">
-										{!! Form::label('fullname', 'Full Name') !!}
-										{!! Form::text('fullname', null, ['class' => 'form-control']) !!}
+										{!! Form::label('fullname', 'Full Name*') !!}
+										{!! Form::text('fullname', null, ['class' => 'form-control', 'required']) !!}
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										{!! Form::label('email', 'Email', ['class' => 'control-label']) !!}
-										{!! Form::email('email', null, ['class' => 'form-control']) !!}
+										{!! Form::label('email', 'Email*', ['class' => 'control-label']) !!}
+										{!! Form::email('email', null, ['class' => 'form-control', 'required']) !!}
 									</div>
 								</div>
 							</div>
@@ -68,16 +68,16 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										{!! Form::label('date_of_birth', 'Date of Birth', ['class' => 'control-label']) !!}
-										{!! Form::date('date_of_birth', null, ['class' => 'form-control']) !!}
+										{!! Form::label('date_of_birth', 'Date of Birth*', ['class' => 'control-label']) !!}
+										{!! Form::text('date_of_birth', null, ['class' => 'form-control singledate', 'required']) !!}
 									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										{!! Form::label('mobile', 'Mobile', ['class' => 'control-label']) !!}
-										{!! Form::number('mobile', null, ['class' => 'form-control']) !!}
+										{!! Form::label('mobile', 'Mobile*', ['class' => 'control-label']) !!}
+										{!! Form::number('mobile', null, ['class' => 'form-control', 'required']) !!}
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -104,12 +104,16 @@
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="control-label">Type</label>
+										<!--<label class="control-label">Type</label>
 										<select class="form-control custom-select" name="type">
 											<option disabled selected hidden>--Select Type--</option>
-											<option value="customer" {{ old("type", $client->type) == "customer" ? "selected" : "" }}>Customer</option>
-											<option value="supplier" {{ old("type", $client->type) == "supplier" ? "selected" : "" }}>Supplier</option>
-										</select>
+											<option value="Customer" {{ old("type", $client->type) == "Customer" ? "selected" : "" }}>Customer</option>
+											<option value="Supplier" {{ old("type", $client->type) == "Supplier" ? "selected" : "" }}>Supplier</option>
+											<option value="MICE" {{ old("type", $client->type) == "MICE" ? "selected" : "" }}>MICE</option>
+											<option value="Other" {{ old("type", $client->type) == "Other" ? "selected" : "" }}>Other</option>
+										</select>-->
+										{!! Form::label('type', 'Type', ['class' => 'control-label']) !!}
+										{!! Form::select('type', ['Events' => 'Events', 'Subscribers' => 'Subscribers', 'Others' => 'Others'], null, ['class' => 'form-control custom-select']) !!}
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -147,16 +151,16 @@
 							<div class="row p-t-20">
 								<div class="col-md-12">
 									<div class="form-group">
-										{!! Form::label('country', 'Country', ['class' => 'control-label']) !!}
-										{!! Form::text('country', null, ['class' => 'form-control']) !!}
+										{!! Form::label('country', 'Country*', ['class' => 'control-label']) !!}
+										{!! Form::text('country', null, ['class' => 'form-control', 'required']) !!}
 									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										{!! Form::label('city', 'City', ['class' => 'control-label']) !!}
-										{!! Form::text('city', null, ['class' => 'form-control']) !!}
+										{!! Form::label('city', 'City*', ['class' => 'control-label']) !!}
+										{!! Form::text('city', null, ['class' => 'form-control', 'required']) !!}
 									</div>
 								</div>
 								<div class="col-md-6">
@@ -232,7 +236,7 @@
 		</div>
 		{!! Form::close() !!}
       </div>
-		<footer class="footer">© 2019 Copyright.</footer>
+		<footer class="footer">© 2020 Copyright.</footer>
 	</div>
 	<script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
 	<script src="{{asset('assets/plugins/popper/popper.min.js')}}"></script>
@@ -246,6 +250,11 @@
 	<script src="{{asset('assets/plugins/switchery/dist/switchery.min.js')}}"></script>
 	<script src="{{asset('assets/plugins/summernote/summernote-bs4.min.js')}}"></script>
 	<script src="{{asset('assets/plugins/summernote/form-summernote.init.js')}}"></script>
+	<script src="{{asset('assets/plugins/moment/moment.js')}}"></script>
+    <script src="{{asset('assets/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js')}}"></script>
+	<script src="{{asset('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js')}}"></script>
+	<script src="{{asset('assets/plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
+    <script src="{{asset('assets/plugins/daterangepicker/daterangepicker.js')}}"></script>
 	<script>
     $(function() {
         // Switchery
@@ -255,6 +264,15 @@
         });
     });
     </script>
+	<script>
+	   $('.singledate').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true,
+		locale: {
+            format: 'YYYY/MM/DD'
+        }
+    });
+	</script>
    </body>
 </html>
 @endsection

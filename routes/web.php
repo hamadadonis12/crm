@@ -13,6 +13,9 @@
 
 Route::get('/', 'HomeController@index');
 
+Route::get('wwt', 'EliasController@create')->name('wwt.create');
+Route::post('clients-wwt', 'EliasController@store')->name('wwt.store');
+	
 Auth::routes(['register' => false]);
 
 Route::middleware(['auth', 'is-active'])->group(function () {
@@ -26,6 +29,8 @@ Route::middleware(['auth', 'is-active'])->group(function () {
 	Route::resource('users', 'UserController');
 	Route::resource('countries', 'CountryController');
 	Route::resource('cities', 'CityController');
+	
+	Route::get('clients/fetch_data', 'ClientController@fetch_data')->name('clients.fetch_data');
 
 
 	Route::get('sales', 'SalesController@index')->name('sales.index');

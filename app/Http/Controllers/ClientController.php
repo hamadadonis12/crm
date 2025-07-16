@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use PDF;
+use DB;
 use Auth;
 use Excel;
 use Notification;
@@ -22,10 +23,45 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index (Request $request)
     {
-        $clients = Client::all();
-		$filterQuery = '';
+        $clientQuery = Client::orderBy('id', 'ASC');
+		$filterQuery = http_build_query($request->except('_token')); //for the export
+
+       // if($request->has('type'))
+          //  $clientQuery->where('type', $request->type);
+
+        if($request->fullname)
+            $clientQuery->where('fullname', $request->fullname);
+
+		if($request->gender)
+            $clientQuery->where('gender', $request->gender);
+
+		if($request->date_of_birth)
+            $clientQuery->where('date_of_birth', $request->date_of_birth);
+
+		if($request->email)
+            $clientQuery->where('email', $request->email);
+
+		if($request->mobile)
+            $clientQuery->where('mobile', $request->mobile);
+
+		if($request->company)
+            $clientQuery->where('company', $request->company);
+
+		if($request->type)
+            $clientQuery->where('type', $request->type);
+
+		if($request->country)
+            $clientQuery->where('country', $request->country);
+
+
+        $clients = $clientQuery->paginate(25);
+
+       if ($request->ajax()) {
+			return view('clients.pagination_data', compact('clients'));
+       }
+
 		return view('clients.index', ['clients' => $clients, 'filterQuery' => $filterQuery]);
     }
 
@@ -48,7 +84,7 @@ class ClientController extends Controller
     public function store(ClientRequest $request)
     {
         $client = Client::create($request->all());
-		
+
 		//Add Avatar
         /*if ($request->avatar) {
             $client->addMedia($request->avatar)->toMediaCollection('client-avatar');
@@ -57,15 +93,23 @@ class ClientController extends Controller
             $ext = $request->file('avatar')->getClientOriginalExtension();
             $client
                 ->addMedia($request->avatar)
-                ->setFileName("client-".$client->id.'.'.$ext)
+                ->setFileName("client-avatar".$client->id.'.'.$ext)
                 ->toMediaCollection('client-avatar');
         }
-		
+
 		//Add Passport
-        if ($request->image) {
+        /*if ($request->image) {
             $client->addMedia($request->image)->toMediaCollection('client');
+        }*/
+
+		if ($request->image) {
+            $ext = $request->file('image')->getClientOriginalExtension();
+            $client
+                ->addMedia($request->image)
+                ->setFileName("client-".$client->id.'.'.$ext)
+                ->toMediaCollection('client');
         }
-        
+
 		session()->flash('message', 'Your record has been added successfully');
 		return redirect(route('clients.index'));
     }
@@ -77,12 +121,12 @@ class ClientController extends Controller
      * @return \Illuminate\Http\Response
      */
     /*public function show(Client $client, $slug)
-    {   
+    {
         return view('clients.show', ['client' => $client]);
     }*/
-	
+
 	public function show(Client $client)
-    {   
+    {
         return view('clients.show', ['client' => $client]);
     }
 
@@ -109,23 +153,31 @@ class ClientController extends Controller
     {
         if($request->has('delete_existing_avatar'))
             $client->clearMediaCollection('client-avatar');
-		
+
 		if($request->has('delete_existing_image'))
             $client->clearMediaCollection('client');
-        		
+
 		if (isset($request->avatar)) {
             $ext = $request->file('avatar')->getClientOriginalExtension();
             $client
                 ->addMedia($request->avatar)
-                ->setFileName("client-".$client->id.'.'.$ext)
+                ->setFileName("client-avatar".$client->id.'.'.$ext)
                 ->toMediaCollection('client-avatar');
         }
 
         //dd($request->file('avatar'));
         //dd(pathinfo($request->file('avatar'), PATHINFO_EXTENSION));
-        
-        if (isset($request->image)) {
-            $client->addMedia($request->image)->toMediaCollection('client');
+
+       // if (isset($request->image)) {
+         //   $client->addMedia($request->image)->toMediaCollection('client');
+       // }
+
+		if (isset($request->image)) {
+            $ext = $request->file('image')->getClientOriginalExtension();
+            $client
+                ->addMedia($request->image)
+                ->setFileName("client-".$client->id.'.'.$ext)
+                ->toMediaCollection('client');
         }
 
 		$client->update($request->all());
@@ -151,35 +203,49 @@ class ClientController extends Controller
         $export = new ClientsExport($request->all());
         return Excel::download($export, 'clients.xlsx');
     }
-	
+
 	public function filter()
     {
         return view('clients.filter');
     }
-	
+
 	public function doFilter(Request $request)
     {
-        $clientQuery = Client::query();
+       /* $clientQuery = Client::query();
 
-		if($request->firstname)
-            $clientQuery->where('firstname', $request->firstname);
-		
+		if($request->fullname)
+            $clientQuery->where('fullname', $request->fullname);
+
+		if($request->gender)
+            $clientQuery->where('gender', $request->gender);
+
+		if($request->date_of_birth)
+            $clientQuery->where('date_of_birth', $request->date_of_birth);
+
 		if($request->email)
             $clientQuery->where('email', $request->email);
-		
+
 		if($request->mobile)
             $clientQuery->where('mobile', $request->mobile);
-		
+
 		if($request->company)
             $clientQuery->where('company', $request->company);
 
-        $clients = $clientQuery->get();
+		if($request->type)
+            $clientQuery->where('type', $request->type);
+
+		if($request->country)
+            $clientQuery->where('country', $request->country);
+
+		$clients = $clientQuery->orderBy('id', 'ASC')->paginate(25);
 		//dd($request->all());
 
         $filterQuery = http_build_query($request->except('_token'));
-        return view('clients.index', ['clients' => $clients, 'filterQuery' => $filterQuery]);
+        //return view('clients.index', ['clients' => $clients, 'filterQuery' => $filterQuery]);*/
+
+        return redirect()->route('clients.index', $request->except('_token'));
     }
-	
+
 	public function pdf(Client $client)
     {
         $pdf = PDF::loadView('pdf.client', ['client' => $client]);

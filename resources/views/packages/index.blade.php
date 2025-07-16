@@ -45,8 +45,8 @@
                               <tr>
                                  <td><a href="{{route('packages.show', $package->id)}}">{{ $package->name }}</a></td>
                                  <td>{{ $package->client->fullname }}</td>
-                                 <td>{{ $package->from }}</td>
-								 <td>{{ $package->to }}</td>
+                                 <td>{{ Carbon\Carbon::parse($package->from)->format('Y-m-d') }}</td>
+								 <td>{{ Carbon\Carbon::parse($package->to)->format('Y-m-d') }}</td>
                               </tr>
 							@endforeach
                            </tbody>
@@ -60,7 +60,7 @@
             </div>
          </div>				
       </div>
-		<footer class="footer">© 2019 Copyright.</footer>
+		<footer class="footer">© 2020 Copyright.</footer>
 	  </div>
       <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
       <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>

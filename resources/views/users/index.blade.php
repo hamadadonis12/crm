@@ -43,7 +43,8 @@
                            <tbody>
 							@foreach($users as $user)
                               <tr>
-                                 <td><a href="{{route('users.show', $user->id)}}">{{ $user->first_name }} {{ $user->last_name }}</a></td>
+                                 <!--<td><a href="{{route('users.show', $user->id)}}">{{ $user->first_name }} {{ $user->last_name }}</a></td>-->
+								 <td>{{ $user->first_name }} {{ $user->last_name }}</td>
                                  <td>{{ $user->email }}</td>
                                  <td>{{ $user->phone }}</td>
 								 <td>{!! $user->is_active == 1 ? '<span class="label label-success">active</span>' : '<span class="label label-danger">not active</span>' !!}</td>
@@ -52,14 +53,14 @@
                            </tbody>
                         </table>
                      </div>
-					<a href="{{route('users.create')}}" class="btn btn-info btn-rounded m-t-10 float-left m-l-20">Add New</a>
+					<!--<a href="{{route('users.create')}}" class="btn btn-info btn-rounded m-t-10 float-left m-l-20">Add New</a>-->
                   </div>
                </div>
 			   
             </div>
          </div>
       </div>
-		<footer class="footer">© 2019 Copyright.</footer>
+		<footer class="footer">© 2020 Copyright.</footer>
 	  </div>
       <script src="{{asset('assets/plugins/jquery/jquery.min.js')}}"></script>
       <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}"></script>
