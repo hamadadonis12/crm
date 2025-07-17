@@ -15,6 +15,9 @@ use App\Http\Requests\ClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 use App\Notifications\ClientBirth;
 use App\Notifications\PassportExpiry;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Cache;
+use App\Mail\BirthdayWishMail;
 
 class ClientController extends Controller
 {
@@ -246,9 +249,38 @@ class ClientController extends Controller
         return redirect()->route('clients.index', $request->except('_token'));
     }
 
-	public function pdf(Client $client)
+    public function pdf(Client $client)
     {
         $pdf = PDF::loadView('pdf.client', ['client' => $client]);
         return $pdf->download('client_'.$client->fullname.'.pdf');
+    }
+
+    /**
+     * Check clients birthdays and send greeting emails.
+     * This method is intended to be executed daily via scheduler.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public static function sendBirthdayEmails()
+    {
+        $today = Carbon::now()->format('m-d');
+
+        $emailed = [];
+
+        $clients = Client::whereNotNull('birthday')->get();
+
+        foreach ($clients as $client) {
+            if (Carbon::parse($client->birthday)->format('m-d') === $today) {
+                $cacheKey = 'birthday_email_'.$client->id.'_'.Carbon::now()->toDateString();
+
+                if (!Cache::has($cacheKey)) {
+                    Mail::to($client->email)->send(new BirthdayWishMail($client));
+                    Cache::put($cacheKey, true, now()->addDay());
+                    $emailed[] = $client->email;
+                }
+            }
+        }
+
+        return response()->json(['emailed' => $emailed]);
     }
 }
