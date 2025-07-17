@@ -267,10 +267,10 @@ class ClientController extends Controller
 
         $emailed = [];
 
-        $clients = Client::whereNotNull('birthday')->get();
+        $clients = Client::whereNotNull('date_of_birth')->get();
 
         foreach ($clients as $client) {
-            if (Carbon::parse($client->birthday)->format('m-d') === $today) {
+            if (Carbon::parse($client->date_of_birth)->format('m-d') === $today) {
                 $cacheKey = 'birthday_email_'.$client->id.'_'.Carbon::now()->toDateString();
 
                 if (!Cache::has($cacheKey)) {
