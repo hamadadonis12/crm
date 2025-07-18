@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Console\Commands\SendBirthdayEmails;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +14,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        SendBirthdayEmails::class,
     ];
 
     /**
@@ -32,7 +33,7 @@ class Kernel extends ConsoleKernel
                                 ->daily()
                                 ->runInBackground();
 
-        $schedule->command('SendBirthdayEmails')
+        $schedule->command(SendBirthdayEmails::class)
                  ->daily()
                  ->runInBackground();
     }
