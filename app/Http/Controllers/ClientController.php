@@ -13,11 +13,10 @@ use Illuminate\Http\Request;
 use App\Exports\ClientsExport;
 use App\Http\Requests\ClientRequest;
 use App\Http\Requests\UpdateClientRequest;
-use App\Notifications\ClientBirth;
-use App\Notifications\PassportExpiry;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Cache;
 use App\Mail\BirthdayWishMail;
+use App\Mail\PassportExpiryMail;
 
 class ClientController extends Controller
 {
@@ -280,6 +279,34 @@ class ClientController extends Controller
                     Cache::put($cacheKey, true, now()->addDay());
                     $emailed[] = $client->email;
                 }
+            }
+        }
+
+        return response()->json(['emailed' => $emailed]);
+    }
+
+    /**
+     * Notify clients 30 days before their passport expires via email.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public static function sendPassportExpiryNotifications()
+    {
+        $targetDate = Carbon::now()->addDays(30)->toDateString();
+
+        $emailed = [];
+
+        $clients = Client::whereDate('expiry_date', $targetDate)->get();
+
+        foreach ($clients as $client) {
+            $cacheKey = 'passport_expiry_' . $client->id . '_' . $client->expiry_date;
+
+            if (!Cache::has($cacheKey)) {
+                Mail::to($client->email)->send(new PassportExpiryMail($client));
+
+                Cache::forever($cacheKey, true);
+
+                $emailed[] = $client->email;
             }
         }
 

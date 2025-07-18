@@ -4,6 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Console\Commands\SendBirthdayEmails;
+use App\Console\Commands\SendPassportExpiryNotifications;
 
 class Kernel extends ConsoleKernel
 {
@@ -13,7 +15,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        SendBirthdayEmails::class,
+        SendPassportExpiryNotifications::class,
     ];
 
     /**
@@ -24,15 +27,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('worldtravel:send-birthday-notification')
+        $schedule->command(SendBirthdayEmails::class)
                  ->daily()
                  ->runInBackground();
 
-        $schedule->command('worldtravel:send-passport-expiry-notification')
-                                ->daily()
-                                ->runInBackground();
-
-        $schedule->command('SendBirthdayEmails')
+        $schedule->command(SendPassportExpiryNotifications::class)
                  ->daily()
                  ->runInBackground();
     }
