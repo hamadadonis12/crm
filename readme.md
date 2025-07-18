@@ -70,3 +70,6 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Environment Variables
+`PASSPORT_EXPIRY_DAYS` defines how many days in advance clients are notified of passport expiration. Default is 30 days.
