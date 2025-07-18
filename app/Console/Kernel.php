@@ -25,14 +25,6 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('worldtravel:send-birthday-notification')
-                 ->daily()
-                 ->runInBackground();
-
-        $schedule->command('worldtravel:send-passport-expiry-notification')
-                                ->daily()
-                                ->runInBackground();
-
         $schedule->command(SendBirthdayEmails::class)
                  ->daily()
                  ->runInBackground();
