@@ -33,7 +33,11 @@ class Kernel extends ConsoleKernel
                                 ->daily()
                                 ->runInBackground();
 
-        $schedule->command(SendBirthdayEmails::class)
+        $schedule->command('SendBirthdayEmails')
+                 ->daily()
+                 ->runInBackground();
+
+        $schedule->command('SendPassportExpiryNotifications')
                  ->daily()
                  ->runInBackground();
     }
