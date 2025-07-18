@@ -257,7 +257,9 @@ class ClientController extends Controller
 
     /**
      * Check clients birthdays and send greeting emails.
-     * This method is intended to be executed daily via scheduler.
+     * This method reads each client's `date_of_birth` column to
+     * determine if today is their birthday. It is intended to run daily
+     * via the scheduler.
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -267,10 +269,10 @@ class ClientController extends Controller
 
         $emailed = [];
 
-        $clients = Client::whereNotNull('birthday')->get();
+        $clients = Client::whereNotNull('date_of_birth')->get();
 
         foreach ($clients as $client) {
-            if (Carbon::parse($client->birthday)->format('m-d') === $today) {
+            if (Carbon::parse($client->date_of_birth)->format('m-d') === $today) {
                 $cacheKey = 'birthday_email_'.$client->id.'_'.Carbon::now()->toDateString();
 
                 if (!Cache::has($cacheKey)) {
