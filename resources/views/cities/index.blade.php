@@ -44,11 +44,11 @@
                                  <td>{{ $city->country['name'] }}</td>
                                  <td>{{ $city->name }}</td>
 								 <td>
-								 	<a href="{{route('cities.edit', $city->id)}}" class="btn waves-effect waves-light btn-sm btn-info"><i class="mdi mdi-grease-pencil"></i> Edit</a>
+                                                                     <a href="{{route('cities.edit', $city->id)}}" class="btn waves-effect waves-light btn-sm btn-info"><i class="fa fa-pencil-alt"></i> Edit</a>
 									<form onsubmit="return confirm('Are you sure you want to delete?');" class="d-inline-block" method="post" action="{{route('cities.destroy', $city->id)}}">
 										@csrf
 										@method('delete')
-										<button type="submit" class="btn waves-effect waves-light btn-sm btn-danger"><i class="mdi mdi-delete"></i> Delete</button>
+                                                                            <button type="submit" class="btn waves-effect waves-light btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button>
 									</form>
 								 </td>
                               </tr>

@@ -24,13 +24,13 @@
                                 </center>
                             </div>
                             <div class="center-btn">
-								<a href="{{route('packages.edit', $package->id)}}" class="btn waves-effect waves-light btn-sm btn-info"><i class="mdi mdi-grease-pencil"></i> Edit</a>
-								<a href="{{route('packages.pdf', $package->id)}}" class="btn waves-effect waves-light btn-sm btn-info"><i class="mdi mdi-grease-pencil"></i> PDF</a>
+                                                             <a href="{{route('packages.edit', $package->id)}}" class="btn waves-effect waves-light btn-sm btn-info"><i class="fa fa-pencil-alt"></i> Edit</a>
+                                                             <a href="{{route('packages.pdf', $package->id)}}" class="btn waves-effect waves-light btn-sm btn-info"><i class="fa fa-pencil-alt"></i> PDF</a>
 								
 								<form onsubmit="return confirm('Are you sure you want to delete?');" class="d-inline-block" method="post" action="{{route('packages.destroy', $package->id)}}">
 									@csrf
 									@method('delete')
-									<button type="submit" class="btn waves-effect waves-light btn-sm btn-danger"><i class="mdi mdi-delete"></i> Delete</button>
+                                                                     <button type="submit" class="btn waves-effect waves-light btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button>
 								</form>
 							</div>
 							<hr class="m-t-10"> 

@@ -27,7 +27,7 @@
 			<div class="col-lg-12">
 				<div class="card">
 					<div class="card-header bg-info">
-						<h4 class="m-b-0 text-white"><i class="mdi mdi-grease-pencil"></i> Edit Content</h4>
+                                             <h4 class="m-b-0 text-white"><i class="fa fa-pencil-alt"></i> Edit Content</h4>
 					</div>
 					<div class="card-body">
 						{!! Form::open(['route' => 'users.store', 'method' => 'POST', 'files' => true ]) !!}
