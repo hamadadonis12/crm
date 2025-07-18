@@ -29,7 +29,7 @@
 			<div class="col-lg-9">
 				<div class="card">
 					<div class="card-header bg-info">
-						<h4 class="m-b-0 text-white"><i class="mdi mdi-grease-pencil"></i> Filter Options</h4>
+                                             <h4 class="m-b-0 text-white"><i class="fa fa-pencil-alt"></i> Filter Options</h4>
 					</div>
 					<div class="card-body">
 						@include('clients._filter')

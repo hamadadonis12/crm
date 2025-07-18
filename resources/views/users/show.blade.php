@@ -24,13 +24,13 @@
                                 </center>
                             </div>
                             <div class="center-btn">
-								<a href="{{route('users.edit', $user->id)}}" class="btn waves-effect waves-light btn-sm btn-info"><i class="mdi mdi-grease-pencil"></i> Edit</a>
+                                                             <a href="{{route('users.edit', $user->id)}}" class="btn waves-effect waves-light btn-sm btn-info"><i class="fa fa-pencil-alt"></i> Edit</a>
 								<form onsubmit="return confirm('Are you sure you want to delete?');" class="d-inline-block" method="post" action="{{route('users.destroy', $user->id)}}">
 									@csrf
 									@method('delete')
-									<button type="submit" class="btn waves-effect waves-light btn-sm btn-danger"><i class="mdi mdi-delete"></i> Delete</button>
+                                                                     <button type="submit" class="btn waves-effect waves-light btn-sm btn-danger"><i class="fa fa-trash"></i> Delete</button>
 								</form>
-								<a href="{{route('users.index')}}" class="btn waves-effect waves-light btn-sm btn-info"><i class="mdi mdi-grease-pencil"></i> Back</a>
+                                                             <a href="{{route('users.index')}}" class="btn waves-effect waves-light btn-sm btn-info"><i class="fa fa-pencil-alt"></i> Back</a>
 							</div>
 							<hr class="m-t-10"> 
                             <div class="card-body"> 

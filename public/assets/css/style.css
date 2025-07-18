@@ -8,7 +8,6 @@ Global Styles
 @import url(icons/linea-icons/linea.css);
 @import url(icons/themify-icons/themify-icons.css);
 @import url(icons/flag-icon-css/flag-icon.min.css);
-@import url(icons/material-design-iconic-font/css/materialdesignicons.min.css);
 @import url(spinners.css);
 @import url(animate.css);
 * {
@@ -80,9 +79,6 @@ dl, ol, ul {
 .img-rounded {
   border-radius: 4px; }
 
-html body .mdi:before,
-html body .mdi-set {
-  line-height: initial; }
 
 /*******************
 Headings

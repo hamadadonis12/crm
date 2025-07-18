@@ -103,7 +103,7 @@
 					 <li class="nav-devider"></li>
 					 <li class="nav-small-cap"><a href="/" style="font-size:12px;padding:0">DASHBOARD</a></li>
 					 <li>
-						<a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-account"></i><span class="hide-menu">Administration</span></a>
+                                            <a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="fa fa-user"></i><span class="hide-menu">Administration</span></a>
 						<ul aria-expanded="false" class="collapse">
 						   <li><a href="{!! route('users.index') !!}">User Management </a></li>
 						   <li><a href="#">Group</a></li>
@@ -111,7 +111,7 @@
 						</ul>
 					 </li>   
 					 <li>
-						<a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
+                                            <a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard </span></a>
 						<ul aria-expanded="false" class="collapse">
 						   <li><a href="{!! route('clients.index') !!}">Clients</a></li>
 						   <li><a href="{!! route('packages.index') !!}">Packages</a></li>
@@ -119,7 +119,7 @@
 						</ul>
 					 </li>
 					 <li>
-						<a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-google-maps"></i><span class="hide-menu">Countries </span></a>
+                                            <a class="has-arrow waves-effect waves-dark" aria-expanded="false"><i class="fa fa-map"></i><span class="hide-menu">Countries </span></a>
 						<ul aria-expanded="false" class="collapse">
 						   <li><a href="{!! route('countries.index') !!}">Countries</a></li>
 						   <li><a href="{!! route('cities.index') !!}">Cities</a></li>
