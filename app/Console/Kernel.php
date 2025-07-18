@@ -5,6 +5,7 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Console\Commands\SendBirthdayEmails;
+use App\Console\Commands\NotifyPassportExpiry;
 
 class Kernel extends ConsoleKernel
 {
@@ -15,6 +16,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         SendBirthdayEmails::class,
+        NotifyPassportExpiry::class,
     ];
 
     /**
@@ -26,6 +28,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command(SendBirthdayEmails::class)
+                 ->daily()
+                 ->runInBackground();
+
+        $schedule->command(NotifyPassportExpiry::class)
                  ->daily()
                  ->runInBackground();
     }
