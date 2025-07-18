@@ -32,10 +32,11 @@ class PassportExpiry extends Notification
      */
     public function via($notifiable)
     {
-        if($notifiable instanceof Client)
+        if ($notifiable instanceof Client || $notifiable instanceof \App\User) {
             return ['mail'];
-        else
-            return ['database'];
+        }
+
+        return ['database'];
     }
 
     /**
