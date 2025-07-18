@@ -285,4 +285,35 @@ class ClientController extends Controller
 
         return response()->json(['emailed' => $emailed]);
     }
+
+    /**
+     * Notify clients when their passport is about to expire.
+     * The number of days in advance is controlled by the
+     * `PASSPORT_EXPIRY_DAYS` environment variable.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public static function sendPassportExpiryNotifications()
+    {
+        $days    = env('PASSPORT_EXPIRY_DAYS', 30);
+        $target  = Carbon::now()->addDays($days)->toDateString();
+
+        $emailed = [];
+
+        $clients = Client::whereNotNull('expiry_date')->get();
+
+        foreach ($clients as $client) {
+            if (Carbon::parse($client->expiry_date)->toDateString() === $target) {
+                $cacheKey = 'passport_expiry_' . $client->id . '_' . $target;
+
+                if (!Cache::has($cacheKey)) {
+                    $client->notify(new PassportExpiry($client->fullname));
+                    Cache::put($cacheKey, true, now()->addDay());
+                    $emailed[] = $client->email;
+                }
+            }
+        }
+
+        return response()->json(['emailed' => $emailed]);
+    }
 }
